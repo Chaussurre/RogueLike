@@ -39,7 +39,7 @@ public class CardHolder : MonoBehaviour
     int FindHoveredCard() //return index, -1 if no card found
     {
         for (int i = 0; i < Cards.Count; i++)
-            if (Cards[i].IsHovered())
+            if (Cards[i].IsHovered() || Cards[i].IsGrabbed())
                 return i;
         return -1; //No card found
     }
@@ -70,7 +70,8 @@ public class CardHolder : MonoBehaviour
         GroupCards(StartPos, StartCardSpace, Cards.GetRange(0, cardIndex));
         GroupCards(EndCardSpace, EndPos, Cards.GetRange(cardIndex + 1, Cards.Count - cardIndex - 1));
 
-        Cards[cardIndex].SetPosition(CardPosition + Vector2.up * HoveredCardUp);
+        if (!Cards[cardIndex].IsGrabbed())
+            Cards[cardIndex].SetPosition(CardPosition + Vector2.up * HoveredCardUp);
         Cards[cardIndex].SetPriority(0);
     }
 
