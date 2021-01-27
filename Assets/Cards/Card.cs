@@ -9,7 +9,6 @@ abstract public class Card : MonoBehaviour
     private Vector2 TargetPosition = Vector2.zero;
     private SpriteRenderer renderer;
     private Collider2D collider;
-    private bool Grabbed = false;
 
     private void Start()
     {
@@ -19,8 +18,6 @@ abstract public class Card : MonoBehaviour
     }
     void Update()
     {
-        GrabbingUpdate();
-
         if (!isOnTargetPosition())
             MoveToTarget();
     }
@@ -37,19 +34,10 @@ abstract public class Card : MonoBehaviour
 
     void MoveToTarget()
     {
-        float Velocity = 10f;
-        transform.position = Vector2.LerpUnclamped(transform.position, TargetPosition, Velocity * Time.deltaTime);
-    }
-
-    void GrabbingUpdate()
-    {
-        if (IsHovered() && Input.GetMouseButtonDown(0))
-            Grabbed = true;
-        if (!Input.GetMouseButton(0))
-            Grabbed = false;
-
-        if (Grabbed)
-            SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        float Velocity = 10f * Time.deltaTime;
+        if (Velocity > 1)
+            Velocity = 1;
+        transform.position = Vector2.Lerp(transform.position, TargetPosition, Velocity);
     }
 
     public void SetPosition(Vector2 position)
@@ -75,8 +63,6 @@ abstract public class Card : MonoBehaviour
         return false;
     }
 
-    public bool IsGrabbed()
-    {
-        return Grabbed;
-    }
+    abstract public void Play();
+
 }
