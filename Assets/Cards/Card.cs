@@ -9,6 +9,7 @@ abstract public class Card : MonoBehaviour
     private Vector2 TargetPosition = Vector2.zero;
     private SpriteRenderer renderer;
     private Collider2D collider;
+    private bool Animating = false; //Perfoming an animation
 
     private void Start()
     {
@@ -18,26 +19,16 @@ abstract public class Card : MonoBehaviour
     }
     void Update()
     {
+        if (Animating)
+            return;
+
         if (!isOnTargetPosition())
             MoveToTarget();
     }
 
-    bool isOnTargetPosition()
+    public void Discard()
     {
-        if (Vector2.Distance(TargetPosition, transform.position) < 0.001f) //Arbitrary epsilon value
-        {
-            transform.position = TargetPosition;
-            return true;
-        }
-        return false;
-    }
-
-    void MoveToTarget()
-    {
-        float Velocity = 10f * Time.deltaTime;
-        if (Velocity > 1)
-            Velocity = 1;
-        transform.position = Vector2.Lerp(transform.position, TargetPosition, Velocity);
+        StartCoroutine("DiscardAnimationRoutine");
     }
 
     public void SetPosition(Vector2 position)
@@ -65,4 +56,46 @@ abstract public class Card : MonoBehaviour
 
     abstract public void Play();
 
+    bool isOnTargetPosition()
+    {
+        if (Vector2.Distance(TargetPosition, transform.position) < 0.001f) //Arbitrary epsilon value
+        {
+            transform.position = TargetPosition;
+            return true;
+        }
+        return false;
+    }
+
+    void MoveToTarget()
+    {
+        float Velocity = 10f * Time.deltaTime;
+        if (Velocity > 1)
+            Velocity = 1;
+        transform.position = Vector2.Lerp(transform.position, TargetPosition, Velocity);
+    }
+
+    //ANIMATION ROUTINES
+    IEnumerator DiscardAnimationRoutine()
+    {
+        SetPriority(-1);
+        Animating = true;
+        Destroy(gameObject, 3f);
+
+        //Values
+        float gravity = 50f;
+        float initialJump = 20;
+        float rangeLateralJump = 5;
+        float rangeRotationSpeed = 50;
+
+        float RotationSpeed = Random.Range(-rangeRotationSpeed, rangeRotationSpeed);
+        Vector3 Velocity = new Vector3(Random.Range(-rangeLateralJump, rangeLateralJump), initialJump);
+
+        while(true)
+        {
+            Velocity += Vector3.down * gravity * Time.deltaTime;
+            transform.position += Velocity * Time.fixedDeltaTime;
+            transform.Rotate(Vector3.forward * RotationSpeed * Time.fixedDeltaTime);
+            yield return new WaitForFixedUpdate();
+        }
+    }
 }

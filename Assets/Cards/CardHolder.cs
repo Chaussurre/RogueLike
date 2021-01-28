@@ -16,7 +16,7 @@ public class CardHolder : MonoBehaviour
     Card CardGrabbed = null;
 
     public static CardHolder Instance = null;
-    
+
     void Start()
     {
         if (Instance != null)
@@ -41,6 +41,17 @@ public class CardHolder : MonoBehaviour
         TryPlayCard();
         TryGrabCard(CardIndex);
     }
+    
+    public void AddCard(Card card)
+    {
+        Cards.Add(card);
+    }
+
+    public void RemoveCard(Card card)
+    {
+        Cards.Remove(card);
+        card.Discard();
+    }
 
     void TryGrabCard(int HoveredCard)
     {
@@ -60,7 +71,10 @@ public class CardHolder : MonoBehaviour
         if (CardGrabbed != null &&
             CardHeight >= CardPlayHeight + transform.position.y &&
             Input.GetMouseButtonUp(0))
+        {
             CardGrabbed.Play();
+            RemoveCard(CardGrabbed);
+        }
     }
 
     int FindHoveredCard() //return index, -1 if no card found
