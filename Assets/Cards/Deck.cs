@@ -30,7 +30,6 @@ public class Deck : MonoBehaviour
             Cards.Add(c);
         else
             Cards.Insert(index, c);
-        Debug.Log("prout");
         c.transform.parent = transform;
         CheckNonEmpty();
     }
