@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardHolder : MonoBehaviour
+
+//Set the cards in hand to their correct position
+public class CardHolderPositionner : MonoBehaviour
 {
+
     [SerializeField]
     float HolderSize;
     [SerializeField]
@@ -12,23 +15,15 @@ public class CardHolder : MonoBehaviour
     float HoveredCardUp;
     [SerializeField]
     float CardPlayHeight;
-    readonly List<Card> Cards = new List<Card>();
     Card CardGrabbed = null;
 
-    void Start()
-    {
-        Draw(10);
-    }
+    CardHolder holder;
+    List<Card> Cards;
 
-    public void Draw(int times = 1)
+    private void Start()
     {
-        for (int i = 0; i < times; i++)
-        {
-            Card c = CardManager.Deck.TakeFirst();
-            if (c == null)
-                break;
-            Cards.Add(c);
-        }
+        holder = GetComponent<CardHolder>();
+        Cards = holder.Cards;
     }
 
     private void Update()
@@ -41,24 +36,6 @@ public class CardHolder : MonoBehaviour
 
         TryPlayCard();
         TryGrabCard(CardIndex);
-
-        if (Cards.Count < 5)
-            Draw();
-    }
-    
-    public void AddCard(Card card)
-    {
-        if (card == null)
-            return;
-
-        card.transform.parent = transform.parent;
-        Cards.Add(card);
-    }
-
-    public void RemoveCard(Card card)
-    {
-        Cards.Remove(card);
-        card.Discard();
     }
 
     void TryGrabCard(int HoveredCard)
@@ -81,7 +58,7 @@ public class CardHolder : MonoBehaviour
             Input.GetMouseButtonUp(0))
         {
             CardGrabbed.Play();
-            RemoveCard(CardGrabbed);
+            holder.RemoveCard(CardGrabbed);
         }
     }
 
@@ -139,7 +116,7 @@ public class CardHolder : MonoBehaviour
             EndPos = tmp;
         }
 
-        for(int i = 0; i < Cards.Count; i++)
+        for (int i = 0; i < Cards.Count; i++)
         {
             Vector2 position = Vector2.Lerp(StartPos, EndPos, GetFloatCardPosition(i, Cards.Count));
             Cards[i].body.SetPosition(position);
@@ -149,15 +126,8 @@ public class CardHolder : MonoBehaviour
 
     float GetFloatCardPosition(int CardIndex, int IndexMax)
     {
-        return ((float) CardIndex + 1) / (IndexMax + 1);
+        return ((float)CardIndex + 1) / (IndexMax + 1);
     }
-
-    public void PlayCard(Card card)
-    {
-        card.Play();
-        Cards.Remove(card);
-    }
-
     public float GetPlayHeight()
     {
         return transform.position.y + CardPlayHeight;

@@ -10,7 +10,6 @@ public class Card : MonoBehaviour
     private readonly List<CardEffect> Effects = new List<CardEffect>{};
     private void Start()
     {
-        transform.parent = CardManager.Instance.transform;
         Effects.AddRange(GetComponents<CardEffect>());
     }
 

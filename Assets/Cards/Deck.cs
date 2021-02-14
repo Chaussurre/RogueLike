@@ -30,6 +30,8 @@ public class Deck : MonoBehaviour
             Cards.Add(c);
         else
             Cards.Insert(index, c);
+        Debug.Log("prout");
+        c.transform.parent = transform;
         CheckNonEmpty();
     }
 
@@ -53,6 +55,7 @@ public class Deck : MonoBehaviour
         Cards.RemoveAt(index);
         CheckNonEmpty();
         c.CreateBody(transform.position);
+        c.transform.parent = CardManager.Instance.transform;
         return c;
     }
 
