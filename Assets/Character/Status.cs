@@ -29,4 +29,9 @@ public class Status : MonoBehaviour
     {
         //Arg
     }
+
+    public int GetMaxHp()
+    {
+        return MaxHp;
+    }
 }
