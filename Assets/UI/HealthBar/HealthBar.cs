@@ -23,7 +23,7 @@ public class HealthBar : MonoBehaviour
     {
         if (Status == null)
             return;
-        SetMaxLife(Status.GetMaxHp());
+        SetMaxLife(Status.characteristics.Hp);
         SetLife(Status.Hp);
     }
 

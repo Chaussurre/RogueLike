@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Characteristics))]
 public class Status : MonoBehaviour
 {
-    [SerializeField]
-    int MaxHp;
-
+    public Characteristics characteristics { get; private set; }
     public int Hp { get; private set; }
 
     void Start()
     {
-        if (MaxHp == 0)
+        characteristics = GetComponent<Characteristics>();
+
+        if (characteristics.Hp == 0)
             Debug.LogWarning("Max Hp is set to 0");
 
-        Hp = MaxHp;
+        Hp = characteristics.Hp;
     }
 
     public void DealDammage(int damage)
@@ -28,10 +29,5 @@ public class Status : MonoBehaviour
     public void Kill()
     {
         //Arg
-    }
-
-    public int GetMaxHp()
-    {
-        return MaxHp;
     }
 }
