@@ -15,19 +15,16 @@ public class CardHolder : MonoBehaviour
     readonly List<Card> Cards = new List<Card>();
     Card CardGrabbed = null;
 
-    public static CardHolder Instance = null;
-
     void Start()
     {
-        if (Instance != null)
-            Destroy(gameObject);
-
-        Cards.AddRange(FindObjectsOfType<Card>());
-
-        foreach (Card c in Cards)
-            c.transform.parent = transform;
-
-        Instance = this;
+        for(int i = 0; i < 10; i++)
+        {
+            Card c = CardManager.Deck.TakeFirst();
+            if (c == null)
+                break;
+            c.CreateBody();
+            Cards.Add(c);
+        }
     }
 
     private void Update()
@@ -44,6 +41,7 @@ public class CardHolder : MonoBehaviour
     
     public void AddCard(Card card)
     {
+        card.transform.parent = transform.parent;
         Cards.Add(card);
     }
 
@@ -84,7 +82,7 @@ public class CardHolder : MonoBehaviour
         {
             if (Cards[i] == CardGrabbed) //priority is given to the grabbed card
                 return i;
-            if (Cards[i].IsHovered())
+            if (Cards[i].body.IsHovered())
                 index = i;
         }
         return index;
@@ -116,10 +114,10 @@ public class CardHolder : MonoBehaviour
         GroupCards(EndCardSpace, EndPos, Cards.GetRange(cardIndex + 1, Cards.Count - cardIndex - 1));
 
         if (Cards[cardIndex] != CardGrabbed)
-            Cards[cardIndex].SetPosition(CardPosition + Vector2.up * HoveredCardUp);
+            Cards[cardIndex].body.SetPosition(CardPosition + Vector2.up * HoveredCardUp);
         else
-            Cards[cardIndex].SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        Cards[cardIndex].SetPriority(Cards.Count);
+            Cards[cardIndex].body.SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Cards[cardIndex].body.SetPriority(Cards.Count);
     }
 
     void GroupCards(Vector2 StartPos, Vector2 EndPos, List<Card> Cards)
@@ -134,8 +132,8 @@ public class CardHolder : MonoBehaviour
         for(int i = 0; i < Cards.Count; i++)
         {
             Vector2 position = Vector2.Lerp(StartPos, EndPos, GetFloatCardPosition(i, Cards.Count));
-            Cards[i].SetPosition(position);
-            Cards[i].SetPriority(i + 1);
+            Cards[i].body.SetPosition(position);
+            Cards[i].body.SetPriority(i + 1);
         }
     }
 
@@ -148,7 +146,6 @@ public class CardHolder : MonoBehaviour
     {
         card.Play();
         Cards.Remove(card);
-        Destroy(card.gameObject);
     }
 
     public float GetPlayHeight()
