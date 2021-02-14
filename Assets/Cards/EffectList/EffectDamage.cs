@@ -8,7 +8,7 @@ public class EffectDamage : CardEffect
     int damage;
     public override void Play()
     {
-        CombatManager.Instance.BadGuy.DealDammage(damage);
+        CombatManager.Instance.BadGuy.Status.DealDammage(damage);
         Debug.Log("Dealt " + damage + " damage(s) to enemy");
     }
 }

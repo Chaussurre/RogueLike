@@ -2,29 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Status))]
 public class Character : MonoBehaviour
 {
-    [SerializeField]
-    int MaxHp;
-    int Hp;
+    public Status Status { get; private set; }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        Hp = MaxHp;
-    }
-
-    public void DealDammage(int damage)
-    {
-        Hp -= damage;
-
-        if (Hp <= 0)
-            Kill();
-    }
-
-    public void Kill()
-    {
-        //Arg
+        Status = GetComponent<Status>();
     }
 }
 
