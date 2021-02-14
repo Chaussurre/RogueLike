@@ -26,9 +26,9 @@ public class Card : MonoBehaviour
             body.Discard();
     }
 
-    public CardBody CreateBody()
+    public CardBody CreateBody(Vector2 position)
     {
-        body = Instantiate(CardManager.Instance.BodyPrefab, transform);
+        body = Instantiate(CardManager.Instance.BodyPrefab, position, Quaternion.identity, transform);
         return body;
     }
 

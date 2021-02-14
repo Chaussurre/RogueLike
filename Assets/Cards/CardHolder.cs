@@ -17,12 +17,16 @@ public class CardHolder : MonoBehaviour
 
     void Start()
     {
-        for(int i = 0; i < 10; i++)
+        Draw(10);
+    }
+
+    public void Draw(int times = 1)
+    {
+        for (int i = 0; i < times; i++)
         {
             Card c = CardManager.Deck.TakeFirst();
             if (c == null)
                 break;
-            c.CreateBody();
             Cards.Add(c);
         }
     }
@@ -37,10 +41,16 @@ public class CardHolder : MonoBehaviour
 
         TryPlayCard();
         TryGrabCard(CardIndex);
+
+        if (Cards.Count < 5)
+            Draw();
     }
     
     public void AddCard(Card card)
     {
+        if (card == null)
+            return;
+
         card.transform.parent = transform.parent;
         Cards.Add(card);
     }

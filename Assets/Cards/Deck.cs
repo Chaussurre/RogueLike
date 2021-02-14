@@ -5,11 +5,14 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     public List<Card> Cards;
+    private SpriteRenderer renderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < 15; i++)
+        renderer = GetComponent<SpriteRenderer>();
+        CheckNonEmpty();
+        for(int i = 0; i < 25; i++)
         {
             Card c = Instantiate(CardManager.Instance.ListCards[0]);
             Add(c);
@@ -27,6 +30,7 @@ public class Deck : MonoBehaviour
             Cards.Add(c);
         else
             Cards.Insert(index, c);
+        CheckNonEmpty();
     }
 
     public Card TakeFirst()
@@ -34,8 +38,26 @@ public class Deck : MonoBehaviour
         if (Cards.Count == 0)
             return null;
 
-        Card c = Cards[0];
-        Cards.RemoveAt(0);
+        return TakeAt(0);
+    }
+
+    public Card TakeAt(int index)
+    {
+        if (Cards.Count == 0)
+            return null;
+
+        if (index >= Cards.Count)
+            index = Cards.Count - 1;
+
+        Card c = Cards[index];
+        Cards.RemoveAt(index);
+        CheckNonEmpty();
+        c.CreateBody(transform.position);
         return c;
+    }
+
+    private void CheckNonEmpty()
+    {
+        renderer.enabled = Cards.Count > 0;
     }
 }
