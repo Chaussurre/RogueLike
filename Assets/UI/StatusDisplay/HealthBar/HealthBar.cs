@@ -9,6 +9,8 @@ public class HealthBar : MonoBehaviour
     Slider sliderHealth;
     [SerializeField]
     Image ImageHealth;
+    [SerializeField]
+    Text healthText;
 
     private Color DefaultLifeColor;
     void Start()
@@ -22,6 +24,7 @@ public class HealthBar : MonoBehaviour
         sliderHealth.maxValue = life;
         if (sliderHealth.value < life)
             sliderHealth.value = life;
+        UpdateText();
     }
 
     public void SetLife(int life)
@@ -30,6 +33,12 @@ public class HealthBar : MonoBehaviour
             sliderHealth.value = life;
         else
             sliderHealth.value = sliderHealth.maxValue;
+        UpdateText();
+    }
+
+    private void UpdateText()
+    {
+        healthText.text = sliderHealth.value.ToString() + " / " + sliderHealth.maxValue.ToString();
     }
 
     public void SetLifeColor(Color color)

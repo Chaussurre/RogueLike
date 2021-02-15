@@ -22,8 +22,8 @@ public class Status : MonoBehaviour
     {
         Hp -= damage;
 
-        if (Hp <= 0)
-            Kill();
+        if (Hp < 0)
+            Hp = 0;
     }
 
     public void Kill()
