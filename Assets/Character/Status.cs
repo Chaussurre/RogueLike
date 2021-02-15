@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Characteristics))]
+[RequireComponent(typeof(Characteristics)), RequireComponent(typeof(StatusDisplay))]
 public class Status : MonoBehaviour
 {
     public Characteristics characteristics { get; private set; }

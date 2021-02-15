@@ -5,5 +5,5 @@ using UnityEngine;
 public class Characteristics : MonoBehaviour
 {
     public int Hp;
-    public int Attaque;
+    public int Attack;
 }

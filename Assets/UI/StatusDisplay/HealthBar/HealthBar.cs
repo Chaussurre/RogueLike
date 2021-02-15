@@ -10,31 +10,21 @@ public class HealthBar : MonoBehaviour
     [SerializeField]
     Image ImageHealth;
 
-    private Status Status;
     private Color DefaultLifeColor;
     void Start()
     {
         GetComponent<Canvas>().worldCamera = Camera.main;
         DefaultLifeColor = ImageHealth.color;
-        Status = GetComponentInParent<Status>();
     }
 
-    private void Update()
-    {
-        if (Status == null)
-            return;
-        SetMaxLife(Status.characteristics.Hp);
-        SetLife(Status.Hp);
-    }
-
-    private void SetMaxLife(int life)
+    public void SetMaxLife(int life)
     {
         sliderHealth.maxValue = life;
         if (sliderHealth.value < life)
             sliderHealth.value = life;
     }
 
-    private void SetLife(int life)
+    public void SetLife(int life)
     {
         if (sliderHealth.maxValue > life)
             sliderHealth.value = life;
