@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     public Status Status { get; private set; }
     public Characteristics Characteristics { get; private set; }
 
-    float TimerUntilPlay;
+    public float TimerUntilPlay { get; private set; }
 
     private void Start()
     {

@@ -17,12 +17,6 @@ public class CardHolder : MonoBehaviour
         Draw(10);
     }
 
-    private void Update()
-    {
-        if (Cards.Count < 5)
-            Draw();
-    }
-
     public void Draw(int times = 1)
     {
         for (int i = 0; i < times; i++)
