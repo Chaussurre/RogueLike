@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardBody : MonoBehaviour
 {
@@ -9,11 +10,24 @@ public class CardBody : MonoBehaviour
     private Collider2D collider;
     private bool Animating = false; //Perfoming an animation
 
+
+    [SerializeField]
+    private Text Name;
+    [SerializeField]
+    private Text Description;
+    private Canvas canvas;
+
+    public void SetNameDescription(string name, string description)
+    {
+        Name.text = name;
+        Description.text = description;
+    }
+
     private void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
-        renderer.color = Random.ColorHSV(0, 1, 0, 1, 0, 1, 1, 1);
         collider = GetComponent<Collider2D>();
+        canvas = GetComponentInChildren<Canvas>();
     }
     void Update()
     {
@@ -36,7 +50,8 @@ public class CardBody : MonoBehaviour
 
     public void SetPriority(int priority)
     {
-        renderer.sortingOrder = priority;
+        renderer.sortingOrder = priority * 2; //Card sorting layer is even so canvas can be between cards
+        canvas.sortingOrder = priority * 2 + 1;
     }
 
     public bool IsHovered()

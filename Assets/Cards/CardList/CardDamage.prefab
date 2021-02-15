@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e174c7325dd813342b39dfacddd3b419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Card Logger
+  name: Attack
+  description: Deal 5 damage to the enemy
 --- !u!114 &-6445388140936818994
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -98,7 +98,7 @@ public class CardHolderPositionner : MonoBehaviour
         Debug.DrawLine(EndCardSpace, EndPos, Color.red);
 
         GroupCards(StartPos, StartCardSpace, Cards.GetRange(0, cardIndex));
-        GroupCards(EndCardSpace, EndPos, Cards.GetRange(cardIndex + 1, Cards.Count - cardIndex - 1));
+        GroupCards(EndCardSpace, EndPos, Cards.GetRange(cardIndex + 1, Cards.Count - cardIndex - 1), true);
 
         if (Cards[cardIndex] != CardGrabbed)
             Cards[cardIndex].body.SetPosition(CardPosition + Vector2.up * HoveredCardUp);
@@ -107,7 +107,7 @@ public class CardHolderPositionner : MonoBehaviour
         Cards[cardIndex].body.SetPriority(Cards.Count);
     }
 
-    void GroupCards(Vector2 StartPos, Vector2 EndPos, List<Card> Cards)
+    void GroupCards(Vector2 StartPos, Vector2 EndPos, List<Card> Cards, bool reversePriority = false)
     {
         if (StartPos.x > EndPos.x) //switching Start and end if nescessary
         {
@@ -120,7 +120,10 @@ public class CardHolderPositionner : MonoBehaviour
         {
             Vector2 position = Vector2.Lerp(StartPos, EndPos, GetFloatCardPosition(i, Cards.Count));
             Cards[i].body.SetPosition(position);
-            Cards[i].body.SetPriority(i + 1);
+            if (reversePriority)
+                Cards[i].body.SetPriority(Cards.Count - i - 1);
+            else
+                Cards[i].body.SetPriority(i + 1);
         }
     }
 
