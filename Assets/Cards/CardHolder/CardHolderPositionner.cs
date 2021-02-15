@@ -57,8 +57,7 @@ public class CardHolderPositionner : MonoBehaviour
             CardHeight >= CardPlayHeight + transform.position.y &&
             Input.GetMouseButtonUp(0))
         {
-            CardGrabbed.Play();
-            holder.RemoveCard(CardGrabbed);
+            holder.PlayCard(CardGrabbed);
         }
     }
 
@@ -100,11 +99,12 @@ public class CardHolderPositionner : MonoBehaviour
         GroupCards(StartPos, StartCardSpace, Cards.GetRange(0, cardIndex));
         GroupCards(EndCardSpace, EndPos, Cards.GetRange(cardIndex + 1, Cards.Count - cardIndex - 1), true);
 
-        if (Cards[cardIndex] != CardGrabbed)
+        if (Cards[cardIndex] != CardGrabbed) //Hovered card isn't grabbed so it doesn't follow mouse
             Cards[cardIndex].body.SetPosition(CardPosition + Vector2.up * HoveredCardUp);
-        else
+        else // Hovered is grabbed so it follow mouse
             Cards[cardIndex].body.SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        Cards[cardIndex].body.SetPriority(Cards.Count);
+
+        Cards[cardIndex].body.SetPriority(Cards.Count); //Highest priority for the hovered/grabbed card
     }
 
     void GroupCards(Vector2 StartPos, Vector2 EndPos, List<Card> Cards, bool reversePriority = false)

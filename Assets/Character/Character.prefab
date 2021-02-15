@@ -75,6 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 30
   Attack: 10
+  Speed: 500
 --- !u!114 &598691050471968829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 84ef2c99ddb912042bb557ffc15acb08, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.0037735105, b: 0.0037735105, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

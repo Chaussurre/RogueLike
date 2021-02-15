@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class CardHolder : MonoBehaviour
 {
-
+    public static CardHolder Instance = null;
     public List<Card> Cards { get; private set; } = new List<Card>();
 
     void Start()
     {
+        if (Instance != null)
+            Destroy(gameObject);
+        else
+            Instance = this;
+
         Draw(10);
     }
 
@@ -45,10 +50,12 @@ public class CardHolder : MonoBehaviour
         card.Discard();
     }
 
-
     public void PlayCard(Card card)
     {
+        if (!Hero.Instance.CanPlay)
+            return;
+
         card.Play();
-        Cards.Remove(card);
+        RemoveCard (card);
     }
 }
