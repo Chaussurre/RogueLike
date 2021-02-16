@@ -5,6 +5,7 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     public string name;
+    public int ManaCost = 1;
     [TextArea]
     public string description;
     public CardBody body { get; private set; } = null;
@@ -30,7 +31,7 @@ public class Card : MonoBehaviour
     public CardBody CreateBody(Vector2 position)
     {
         body = Instantiate(CardManager.Instance.BodyPrefab, position, Quaternion.identity, transform);
-        body.SetNameDescription(name, description);
+        body.SetText(this);
         return body;
     }
 

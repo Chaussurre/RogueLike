@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ee94a67b2b71041a0dc8c8f1496564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2650561961364667013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +77,8 @@ MonoBehaviour:
   Hp: 30
   Attack: 10
   Speed: 500
+  Mana: 0
+  ManaRegen: 0
 --- !u!114 &598691050471968829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7101650525271020451, guid: 8e4dca5eae84b6145af9befda5d29264, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7101650525271020451, guid: 8e4dca5eae84b6145af9befda5d29264, type: 3}
       propertyPath: m_LocalPosition.z
@@ -237,6 +240,14 @@ PrefabInstance:
     - target: {fileID: 7101650525271020451, guid: 8e4dca5eae84b6145af9befda5d29264, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101650525271020451, guid: 8e4dca5eae84b6145af9befda5d29264, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101650525271020451, guid: 8e4dca5eae84b6145af9befda5d29264, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e4dca5eae84b6145af9befda5d29264, type: 3}
@@ -314,7 +325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8114774610231240438, guid: 93acf9a86ca035846bd3c4516eeca8aa, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8114774610231240438, guid: 93acf9a86ca035846bd3c4516eeca8aa, type: 3}
       propertyPath: m_SizeDelta.x
@@ -347,6 +358,14 @@ PrefabInstance:
     - target: {fileID: 8114774610231240438, guid: 93acf9a86ca035846bd3c4516eeca8aa, type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8114774610231240438, guid: 93acf9a86ca035846bd3c4516eeca8aa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8114774610231240438, guid: 93acf9a86ca035846bd3c4516eeca8aa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93acf9a86ca035846bd3c4516eeca8aa, type: 3}

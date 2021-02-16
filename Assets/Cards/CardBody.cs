@@ -15,12 +15,15 @@ public class CardBody : MonoBehaviour
     private Text Name;
     [SerializeField]
     private Text Description;
+    [SerializeField]
+    private Text Cost;
     private Canvas canvas;
 
-    public void SetNameDescription(string name, string description)
+    public void SetText(Card card)
     {
-        Name.text = name;
-        Description.text = description;
+        Name.text = card.name;
+        Description.text = card.description;
+        Cost.text = card.ManaCost.ToString();
     }
 
     private void Start()

@@ -8,6 +8,7 @@ public class Characteristics : MonoBehaviour
     public int Attack;
     public int Speed;
     public int Mana;
+    public int ManaRegen;
 
     public float TurnFrenquency()
     {

@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Status))]
 public class Character : MonoBehaviour
 {
+
+    [SerializeField]
+    Color color;
     public Status Status { get; private set; }
     public Characteristics Characteristics { get; private set; }
     CharacterBody body;
@@ -34,6 +37,7 @@ public class Character : MonoBehaviour
     public virtual void StartTurn()
     {
         StartCoroutine("TurnRoutine");
+        Status.RegenMana();
     }
 
     virtual protected bool PlayEffect()

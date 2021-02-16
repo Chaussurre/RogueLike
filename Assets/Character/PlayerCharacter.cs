@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero : Character
+public class PlayerCharacter : Character
 {
-    public static Hero Instance;
+    public static PlayerCharacter Instance;
 
     public bool CanPlay { get; private set; } = false; //When the player decide he played all his card
 
@@ -31,5 +31,22 @@ public class Hero : Character
     public void StopPlayingCards()
     {
         CanPlay = false;
+    }
+
+    public bool TryPlayCard(Card card)
+    {
+        if (!CanPlay)
+            return false;
+        if (Status.Mana < card.ManaCost)
+            return false;
+        PlayCard(card);
+        return true;
+    }
+
+    private void PlayCard(Card card)
+    {
+        Status.PayMana(card.ManaCost);
+        card.Play();
+        CardHolder.Instance.RemoveCard(card);
     }
 }

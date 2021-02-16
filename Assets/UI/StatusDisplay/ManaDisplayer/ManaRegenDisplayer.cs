@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ManaDisplayer : MonoBehaviour
+public class ManaRegenDisplayer : MonoBehaviour
 {
     Text text;
 
@@ -16,6 +16,6 @@ public class ManaDisplayer : MonoBehaviour
     private void Update()
     {
         Status status = PlayerCharacter.Instance.Status;
-        text.text = "" + status.Mana + "/" + status.characteristics.Mana;
+        text.text = "+" + status.characteristics.ManaRegen;
     }
 }

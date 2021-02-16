@@ -46,10 +46,6 @@ public class CardHolder : MonoBehaviour
 
     public void PlayCard(Card card)
     {
-        if (!Hero.Instance.CanPlay)
-            return;
-
-        card.Play();
-        RemoveCard (card);
+        PlayerCharacter.Instance.TryPlayCard(card);
     }
 }

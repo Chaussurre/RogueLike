@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CharacterBody : MonoBehaviour
 {
+    public void SetColor(Color color)
+    {
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        renderer.color = color;
+    }
+
     public void Strike(Character target)
     {
         Vector2 targetDirection = target.transform.position - transform.position;

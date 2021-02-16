@@ -28,6 +28,20 @@ public class Status : MonoBehaviour
             Hp = 0;
     }
 
+    public void PayMana(int cost)
+    {
+        Mana -= cost;
+        if (Mana < 0)
+            Mana = 0;
+    }
+
+    public void RegenMana()
+    {
+        Mana += characteristics.ManaRegen;
+        if (Mana > characteristics.Mana)
+            Mana = characteristics.Mana;
+    }
+
     public void Kill()
     {
         //Arg
