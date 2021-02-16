@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
         Characteristics = GetComponent<Characteristics>();
         body = GetComponentInChildren<CharacterBody>();
         TimerUntilPlay = Characteristics.TurnFrenquency();
+        CombatManager.Instance.CreateMarker(this);
     }
 
     public bool IsItMyTurn(float timer)

@@ -21,12 +21,6 @@ public class CombatManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private void Start()
-    {
-        InitCharacter(GoodGuy);
-        InitCharacter(BadGuy);
-    }
-
     private void FixedUpdate()
     {
         if (TurnPlaying != null)
@@ -52,7 +46,7 @@ public class CombatManager : MonoBehaviour
             TurnPlaying = null;
     }
 
-    public void InitCharacter(Character character)
+    public void CreateMarker(Character character)
     {
         TimelineMarker marker = Instantiate(MarkerPrefab);
         marker.Init(character);

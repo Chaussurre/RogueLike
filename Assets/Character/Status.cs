@@ -7,6 +7,7 @@ public class Status : MonoBehaviour
 {
     public Characteristics characteristics { get; private set; }
     public int Hp { get; private set; }
+    public int Mana { get; private set; }
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class Status : MonoBehaviour
             Debug.LogWarning("Max Hp is set to 0");
 
         Hp = characteristics.Hp;
+        Mana = characteristics.Mana;
     }
 
     public void DealDammage(int damage)
