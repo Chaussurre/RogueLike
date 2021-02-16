@@ -848,7 +848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: ManaRegen
-      value: 2
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 5216077360541420169, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1219,7 +1219,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &1404445404
 GameObject:
@@ -1541,7 +1541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: ManaRegen
-      value: 2
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 5216077360541420169, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_AnchorMax.x

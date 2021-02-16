@@ -22,6 +22,12 @@ public class Status : MonoBehaviour
         Mana = characteristics.Mana;
     }
 
+    private void Update()
+    {
+        if (CombatManager.Instance.isWaiting())
+            ManaRegen(Time.deltaTime);
+    }
+
     public void DealDammage(int damage)
     {
         Hp -= damage;
@@ -50,7 +56,6 @@ public class Status : MonoBehaviour
         {
             TimerRegenMana = 0;
             Mana++;
-            Debug.Break();
         }
     }
 

@@ -58,4 +58,9 @@ public class CombatManager : MonoBehaviour
             return BadGuy;
         return GoodGuy;
     }
+
+    public bool isWaiting()
+    {
+        return TurnPlaying == null;
+    }
 }

@@ -25,7 +25,6 @@ public class Character : MonoBehaviour
 
     public bool IsItMyTurn(float timer)
     {
-        Status.ManaRegen(timer);
         TimerUntilPlay -= timer;
         if (TimerUntilPlay < 0)
         {
