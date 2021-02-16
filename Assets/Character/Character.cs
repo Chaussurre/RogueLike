@@ -25,6 +25,7 @@ public class Character : MonoBehaviour
 
     public bool IsItMyTurn(float timer)
     {
+        Status.ManaRegen(timer);
         TimerUntilPlay -= timer;
         if (TimerUntilPlay < 0)
         {
@@ -37,7 +38,6 @@ public class Character : MonoBehaviour
     public virtual void StartTurn()
     {
         StartCoroutine("TurnRoutine");
-        Status.RegenMana();
     }
 
     virtual protected bool PlayEffect()

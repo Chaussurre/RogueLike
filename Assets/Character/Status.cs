@@ -9,6 +9,8 @@ public class Status : MonoBehaviour
     public int Hp { get; private set; }
     public int Mana { get; private set; }
 
+    private float TimerRegenMana = 0;
+
     void Start()
     {
         characteristics = GetComponent<Characteristics>();
@@ -35,11 +37,26 @@ public class Status : MonoBehaviour
             Mana = 0;
     }
 
-    public void RegenMana()
+    public void ManaRegen(float timer)
     {
-        Mana += characteristics.ManaRegen;
-        if (Mana > characteristics.Mana)
-            Mana = characteristics.Mana;
+        if (Mana >= characteristics.Mana)
+        {
+            TimerRegenMana = 0;
+            return;
+        }
+
+        TimerRegenMana += timer;
+        if (TimerRegenMana > characteristics.ManaRegenFrequency())
+        {
+            TimerRegenMana = 0;
+            Mana++;
+            Debug.Break();
+        }
+    }
+
+    public float percentManaRegen()
+    {
+        return TimerRegenMana / characteristics.Mana * 100f;
     }
 
     public void Kill()

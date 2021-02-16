@@ -14,4 +14,9 @@ public class Characteristics : MonoBehaviour
     {
         return 1000f / Speed;
     }
+
+    public float ManaRegenFrequency()
+    {
+        return 1000f / ManaRegen;
+    }
 }
