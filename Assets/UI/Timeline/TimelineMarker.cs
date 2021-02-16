@@ -15,7 +15,6 @@ public class TimelineMarker : MonoBehaviour
         Vector3 End = Timeline.Instance.EndPoint.position;
 
         float delta = character.TimerUntilPlay / character.Characteristics.TurnFrenquency();
-        Debug.Log(delta);
         transform.position = Vector2.Lerp(End, Start, delta);
     }
 

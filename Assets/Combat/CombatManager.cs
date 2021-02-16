@@ -57,4 +57,11 @@ public class CombatManager : MonoBehaviour
         TimelineMarker marker = Instantiate(MarkerPrefab);
         marker.Init(character);
     }
+
+    public Character GetOpponent(Character me)
+    {
+        if (me == GoodGuy)
+            return BadGuy;
+        return GoodGuy;
+    }
 }

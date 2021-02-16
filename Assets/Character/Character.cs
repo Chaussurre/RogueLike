@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
 {
     public Status Status { get; private set; }
     public Characteristics Characteristics { get; private set; }
+    CharacterBody body;
 
     public float TimerUntilPlay { get; private set; }
 
@@ -14,6 +15,7 @@ public class Character : MonoBehaviour
     {
         Status = GetComponent<Status>();
         Characteristics = GetComponent<Characteristics>();
+        body = GetComponentInChildren<CharacterBody>();
         TimerUntilPlay = Characteristics.TurnFrenquency();
     }
 
@@ -42,6 +44,7 @@ public class Character : MonoBehaviour
     private void Attack()
     {
         Debug.Log(ToString() + " attack!");
+        body.Strike(CombatManager.Instance.GetOpponent(this));
     }
 
     private void EndTurn()
