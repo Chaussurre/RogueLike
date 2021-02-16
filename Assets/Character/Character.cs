@@ -43,7 +43,8 @@ public class Character : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log(ToString() + " attack!");
+        Character Target = CombatManager.Instance.GetOpponent(this);
+        Target.Status.DealDammage(Characteristics.Attack);
         body.Strike(CombatManager.Instance.GetOpponent(this));
     }
 
