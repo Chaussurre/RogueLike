@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class CardHolder : MonoBehaviour
 {
-    public static CardHolder Instance = null;
     public List<Card> Cards { get; private set; } = new List<Card>();
+
+    private Deck Deck;
+    private PlayerCharacter Player;
 
     void Start()
     {
-        if (Instance != null)
-            Destroy(gameObject);
-        else
-            Instance = this;
-
+        Player = CombatManager.Instance.Player;
+        Deck = CombatManager.Instance.CardManager.Deck;
         Draw(10);
     }
 
@@ -21,7 +20,7 @@ public class CardHolder : MonoBehaviour
     {
         for (int i = 0; i < times; i++)
         {
-            Card c = CardManager.Deck.TakeFirst();
+            Card c = Deck.TakeFirst();
             if (c == null)
                 break;
             c.transform.parent = transform;
@@ -46,6 +45,6 @@ public class CardHolder : MonoBehaviour
 
     public void PlayCard(Card card)
     {
-        PlayerCharacter.Instance.TryPlayCard(card);
+        Player.TryPlayCard(card);
     }
 }

@@ -7,14 +7,17 @@ public class Deck : MonoBehaviour
     public List<Card> Cards;
     private SpriteRenderer renderer;
 
-    // Start is called before the first frame update
+    private CardManager CardManager;
+
+    // Start is called before the fizrst frame update
     void Start()
     {
+        CardManager = CombatManager.Instance.CardManager;
         renderer = GetComponent<SpriteRenderer>();
         CheckNonEmpty();
         for(int i = 0; i < 25; i++)
         {
-            Card c = Instantiate(CardManager.Instance.ListCards[0]);
+            Card c = Instantiate(CardManager.ListCards[0]);
             Add(c);
         }
     }
@@ -54,7 +57,7 @@ public class Deck : MonoBehaviour
         Cards.RemoveAt(index);
         CheckNonEmpty();
         c.CreateBody(transform.position);
-        c.transform.parent = CardManager.Instance.transform;
+        c.transform.parent = CardManager.transform;
         return c;
     }
 

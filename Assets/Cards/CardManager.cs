@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    public static CardManager Instance = null;
-
-    public static Deck Deck = null;
-    public static CardHolder CardHolder = null;
+    [HideInInspector]
+    public Deck Deck = null;
+    [HideInInspector]
+    public CardHolder CardHolder = null;
 
     public CardBody BodyPrefab;
 
@@ -17,11 +17,6 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (Instance != null)
-            Destroy(gameObject);
-        else
-            Instance = this;
-
         Deck = FindObjectOfType<Deck>();
         CardHolder = FindObjectOfType<CardHolder>();
     }

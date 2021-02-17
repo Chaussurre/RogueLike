@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BattleFieldManager)),
+    RequireComponent(typeof(CardManager))]
 public class CombatManager : MonoBehaviour
 {
     public static CombatManager Instance = null;
 
-    public Character GoodGuy;
+    public PlayerCharacter Player;
     public Character BadGuy;
 
     public TimelineMarker MarkerPrefab;
 
     public Character TurnPlaying { get; private set; } = null;
+    public BattleFieldManager BattleFieldManager { get; private set; }
+    public CardManager CardManager { get; private set; }
 
     private void Awake()
     {
@@ -19,6 +23,9 @@ public class CombatManager : MonoBehaviour
             Instance = this;
         else 
             Destroy(gameObject);
+
+        BattleFieldManager = GetComponent<BattleFieldManager>();
+        CardManager = GetComponent<CardManager>();
     }
 
     private void FixedUpdate()
@@ -26,7 +33,7 @@ public class CombatManager : MonoBehaviour
         if (TurnPlaying != null)
             return; 
 
-        TryPlayTurn(GoodGuy);
+        TryPlayTurn(Player);
         TryPlayTurn(BadGuy);
     }
 
@@ -54,9 +61,9 @@ public class CombatManager : MonoBehaviour
 
     public Character GetOpponent(Character me)
     {
-        if (me == GoodGuy)
+        if (me == Player)
             return BadGuy;
-        return GoodGuy;
+        return Player;
     }
 
     public bool isWaiting()

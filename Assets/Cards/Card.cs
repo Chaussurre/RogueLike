@@ -9,10 +9,12 @@ public class Card : MonoBehaviour
     [TextArea]
     public string description;
     public CardBody body { get; private set; } = null;
+    private CardManager CardManager;
 
     private readonly List<CardEffect> Effects = new List<CardEffect>{};
-    private void Start()
+    private void Awake()
     {
+        CardManager = CombatManager.Instance.CardManager;
         Effects.AddRange(GetComponents<CardEffect>());
     }
 
@@ -30,7 +32,7 @@ public class Card : MonoBehaviour
 
     public CardBody CreateBody(Vector2 position)
     {
-        body = Instantiate(CardManager.Instance.BodyPrefab, position, Quaternion.identity, transform);
+        body = Instantiate(CardManager.BodyPrefab, position, Quaternion.identity, transform);
         body.SetText(this);
         return body;
     }

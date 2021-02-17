@@ -16,7 +16,7 @@ public class ManaDisplayer : MonoBehaviour
 
     private void Update()
     {
-        Status status = PlayerCharacter.Instance.Status;
+        Status status = CombatManager.Instance.Player.Status;
         text.text = "" + status.Mana + "/" + status.characteristics.Mana;
 
         mask.transform.localPosition = Vector2.up * status.percentManaRegen() / 100f * 4;

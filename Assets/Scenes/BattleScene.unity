@@ -546,6 +546,8 @@ GameObject:
   m_Component:
   - component: {fileID: 752049347}
   - component: {fileID: 752049348}
+  - component: {fileID: 752049350}
+  - component: {fileID: 752049349}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -582,9 +584,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c349953ae2dda4a99b87ce9b010793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoodGuy: {fileID: 691010811}
+  Player: {fileID: 691010811}
   BadGuy: {fileID: 893227890}
   MarkerPrefab: {fileID: -334194969329284349, guid: c7b5c78e493eff9479ad8d98e92227d3, type: 3}
+--- !u!114 &752049349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752049346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe20a692bbf9d15448896a9a647172fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Deck: {fileID: 0}
+  CardHolder: {fileID: 0}
+  BodyPrefab: {fileID: 3134263867315607651, guid: a9fb497e2f2e28c41a1cd79afb1b9b07, type: 3}
+  ListCards:
+  - {fileID: 8729749476061642600, guid: 0bc53970ea1685745a51c6a74335e4a4, type: 3}
+--- !u!114 &752049350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752049346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9200005cc23c27443ab66c2b02285991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftField: {fileID: 0}
+  RightField: {fileID: 0}
+  LanePrefab: {fileID: 0}
 --- !u!1 &805043489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe20a692bbf9d15448896a9a647172fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Deck: {fileID: 0}
+  CardHolder: {fileID: 0}
   BodyPrefab: {fileID: 3134263867315607651, guid: a9fb497e2f2e28c41a1cd79afb1b9b07, type: 3}
   ListCards:
   - {fileID: 8729749476061642600, guid: 0bc53970ea1685745a51c6a74335e4a4, type: 3}
@@ -1329,6 +1365,7 @@ MonoBehaviour:
   HoveredCardSpace: 5
   HoveredCardUp: 3
   CardPlayHeight: 3.5
+  WaitingLowering: 0.5
 --- !u!1 &1751203342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,7 +1566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 335336416763462566, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_Name
-      value: Character
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: Speed

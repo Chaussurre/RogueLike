@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class PlayerCharacter : Character
 {
-    public static PlayerCharacter Instance;
-
     public bool CanPlay { get; private set; } = false; //When the player decide he played all his card
+    private CardHolder CardHolder;
 
-    private void Awake()
+    protected override void Start()
     {
-        if (Instance != null)
-            Destroy(gameObject);
-        else
-            Instance = this;
+        CardHolder = CombatManager.Instance.CardManager.CardHolder;
+        base.Start();
     }
 
     public override void StartTurn()
     {
         CanPlay = true;
-        CardHolder.Instance.Draw();
+        CombatManager.Instance.CardManager.CardHolder.Draw();
         base.StartTurn();
     }
 
@@ -47,6 +44,6 @@ public class PlayerCharacter : Character
     {
         Status.PayMana(card.ManaCost);
         card.Play();
-        CardHolder.Instance.RemoveCard(card);
+        CardHolder.RemoveCard(card);
     }
 }

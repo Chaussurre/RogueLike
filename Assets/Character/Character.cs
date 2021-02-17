@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
 
     public float TimerUntilPlay { get; private set; }
 
-    private void Start()
+    protected virtual void Start()
     {
         Status = GetComponent<Status>();
         Characteristics = GetComponent<Characteristics>();

@@ -15,6 +15,9 @@ public class CardHolderPositionner : MonoBehaviour
     float HoveredCardUp;
     [SerializeField]
     float CardPlayHeight;
+    [SerializeField]
+    float WaitingLowering; //How lower the card are when you can't play them
+
     Card CardGrabbed = null;
 
     CardHolder holder;
@@ -119,6 +122,10 @@ public class CardHolderPositionner : MonoBehaviour
         for (int i = 0; i < Cards.Count; i++)
         {
             Vector2 position = Vector2.Lerp(StartPos, EndPos, GetFloatCardPosition(i, Cards.Count));
+
+            if (!CombatManager.Instance.Player.CanPlay)
+                position += Vector2.down * WaitingLowering; //When unable to play, the card is slightly lower
+
             Cards[i].body.SetPosition(position);
             if (reversePriority)
                 Cards[i].body.SetPriority(Cards.Count - i - 1);
