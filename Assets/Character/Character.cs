@@ -5,9 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Status))]
 public class Character : MonoBehaviour
 {
-
-    [SerializeField]
-    Color color;
     public Status Status { get; private set; }
     public Characteristics Characteristics { get; private set; }
     public CharacterBody body { get; private set; }
