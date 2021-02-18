@@ -27,6 +27,14 @@ public class BattleFieldManager : MonoBehaviour
         RightField.AddCharacter(BadGuy);
     }
 
+    public void AddCharacter(Character character, bool Ally = true)
+    {
+        if (Ally)
+            LeftField.AddCharacter(character);
+        else
+            RightField.AddCharacter(character);
+    }
+
     public Vector2 FindPosistion(Character character)
     {
         if (LeftField.HasCharacter(character, out Vector2 position))

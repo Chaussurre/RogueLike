@@ -14,10 +14,11 @@ public class Deck : MonoBehaviour
     {
         CardManager = CombatManager.Instance.CardManager;
         renderer = GetComponent<SpriteRenderer>();
+        List<Card> ListCards = CardManager.ListCards;
         CheckNonEmpty();
         for(int i = 0; i < 25; i++)
         {
-            Card c = Instantiate(CardManager.ListCards[0]);
+            Card c = Instantiate(ListCards[i % ListCards.Count]);
             Add(c);
         }
     }
