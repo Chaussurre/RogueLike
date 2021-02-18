@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof (LaneManager))]
 public class BattleField : MonoBehaviour
 {
-    public List<Lane> Lanes;//{ get; private set; } = new List<Lane>();
+    public List<Lane> Lanes { get; private set; } = new List<Lane>();
     public Lane FrontLine { get; private set; }
-
-    private void Start()
-    {
-        //CreateLane();
-    }
+    public bool IsLeft;
 
     public void AddCharacter(Character character)
     {
