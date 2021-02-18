@@ -27,11 +27,13 @@ public class CharacterBody : MonoBehaviour
     private void Update()
     {
         if (!animating)
-        {
-            BattleFieldManager BattleFieldManager = CombatManager.Instance.BattleFieldManager;
-            Vector2 pos = BattleFieldManager.FindPosistion(Character);
-            transform.position = pos;
-        }
+            SetToPosition();
+    }
+
+    private void SetToPosition()
+    {
+        Vector2 pos = Character.Team.BattleField.FindPosition(Character);
+        transform.position = pos;
     }
 
     IEnumerator StrikeRoutine(Vector2 direction)

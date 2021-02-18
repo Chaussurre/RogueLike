@@ -8,6 +8,6 @@ public class EffectSummon : CardEffect
     public override void Play()
     {
         Character summon = Instantiate(SummonPrefab);
-        CombatManager.Instance.BattleFieldManager.AddCharacter(summon);
+        CombatManager.Instance.TeamManager.AddCharacter(summon);
     }
 }

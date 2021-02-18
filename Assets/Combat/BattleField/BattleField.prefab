@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360201680786233247}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6879224930970989067}
@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 6879224930970989067}
   - component: {fileID: 3348334674867383735}
   - component: {fileID: 7274002076748386683}
+  - component: {fileID: 440473897}
   m_Layer: 0
   m_Name: BattleField
   m_TagString: Untagged
@@ -75,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1244f090906bd4db1997a02bb8f3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsLeft: 0
 --- !u!114 &7274002076748386683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,3 +90,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingPoint: {fileID: 2427677384646663100}
   LaneDistance: 3
+--- !u!114 &440473897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524705087610195400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3ca725f269e7042981a85e2c536a80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsLeft: 0

@@ -7,8 +7,7 @@ public class BattleField : MonoBehaviour
 {
     public List<Lane> Lanes { get; private set; } = new List<Lane>();
     public Lane FrontLine { get; private set; }
-    public bool IsLeft;
-
+    
     public void AddCharacter(Character character)
     {
         foreach (Lane l in Lanes)
@@ -20,18 +19,17 @@ public class BattleField : MonoBehaviour
     }
     private Lane CreateLane()
     {
-        FrontLine = Instantiate(CombatManager.Instance.BattleFieldManager.LanePrefab, transform);
+        FrontLine = Instantiate(CombatManager.Instance.TeamManager.LanePrefab, transform);
         Lanes.Add(FrontLine);
         return FrontLine;
     }
 
-    public bool HasCharacter(Character character, out Vector2 position)
+    public Vector2 FindPosition(Character character)
     {
         foreach (Lane l in Lanes)
-            if (l.HasCharacter(character, out position))
-                return true;
+            if (l.HasCharacter(character, out Vector2 position))
+                return position;
 
-        position = Vector2.zero;
-        return false;
+        return Vector2.zero;
     }
 }

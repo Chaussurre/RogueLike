@@ -7,11 +7,11 @@ public class LaneManager : MonoBehaviour
     public Transform StartingPoint;
     public float LaneDistance;
 
-    BattleField BattleField;
+    Team Team;
 
     private void Start()
     {
-        BattleField = GetComponent<BattleField>();
+        Team = GetComponent<Team>();
     }
 
     private void Update()
@@ -19,10 +19,10 @@ public class LaneManager : MonoBehaviour
         Vector2 position = StartingPoint.position;
         Vector2 delta = Vector2.right * LaneDistance;
 
-        if (BattleField.IsLeft)
+        if (Team.IsLeft)
             delta *= -1;
 
-        foreach(Lane l in BattleField.Lanes)
+        foreach(Lane l in Team.BattleField.Lanes)
         {
             l.transform.position = position;
             position += delta;

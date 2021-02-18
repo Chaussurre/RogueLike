@@ -9,6 +9,8 @@ public class Character : MonoBehaviour
     public Characteristics Characteristics { get; private set; }
     public CharacterBody body { get; private set; }
 
+    public Team Team;
+
     public float TimerUntilPlay { get; private set; }
 
     protected virtual void Start()
@@ -44,9 +46,11 @@ public class Character : MonoBehaviour
 
     private void Attack()
     {
-        Character Target = CombatManager.Instance.GetOpponent(this);
+        Team TargetTeam = CombatManager.Instance.TeamManager.GetOpposingTeam(Team);
+        List<Character> Targets = TargetTeam.BattleField.FrontLine.Characters;
+        Character Target = Targets[Random.Range(0, Targets.Count)];
         Target.Status.DealDammage(Characteristics.Attack);
-        body.Strike(CombatManager.Instance.GetOpponent(this));
+        body.Strike(Target);
     }
 
     private void EndTurn()
