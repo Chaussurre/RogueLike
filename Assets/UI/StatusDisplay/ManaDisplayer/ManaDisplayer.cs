@@ -8,7 +8,7 @@ public class ManaDisplayer : MonoBehaviour
     SpriteMask mask;
     Text text;
 
-    public void Start()
+    public void Awake()
     {
         text = GetComponentInChildren<Text>();
         mask = GetComponentInChildren<SpriteMask>();    

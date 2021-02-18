@@ -16,6 +16,7 @@ public class CombatManager : MonoBehaviour
     public Character TurnPlaying { get; private set; } = null;
     public BattleFieldManager BattleFieldManager { get; private set; }
     public CardManager CardManager { get; private set; }
+    public Timeline TimeLine { get; private set; }
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class CombatManager : MonoBehaviour
 
         BattleFieldManager = GetComponent<BattleFieldManager>();
         CardManager = GetComponent<CardManager>();
+        TimeLine = FindObjectOfType<Timeline>();
     }
 
     private void FixedUpdate()
@@ -55,7 +57,7 @@ public class CombatManager : MonoBehaviour
 
     public void CreateMarker(Character character)
     {
-        TimelineMarker marker = Instantiate(MarkerPrefab);
+        TimelineMarker marker = Instantiate(MarkerPrefab, TimeLine.transform);
         marker.Init(character);
     }
 

@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class CharacterBody : MonoBehaviour
 {
+    bool animating = false; //performing an animation
+    Character Character;
+
+    private void Start()
+    {
+        Character = GetComponentInParent<Character>();
+    }
+
     public void SetColor(Color color)
     {
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
@@ -12,12 +20,23 @@ public class CharacterBody : MonoBehaviour
 
     public void Strike(Character target)
     {
-        Vector2 targetDirection = target.transform.position - transform.position;
+        Vector2 targetDirection = target.body.transform.position - transform.position;
         StartCoroutine("StrikeRoutine", targetDirection.normalized);
+    }
+
+    private void Update()
+    {
+        if (!animating)
+        {
+            BattleFieldManager BattleFieldManager = CombatManager.Instance.BattleFieldManager;
+            Vector2 pos = BattleFieldManager.FindPosistion(Character);
+            transform.position = pos;
+        }
     }
 
     IEnumerator StrikeRoutine(Vector2 direction)
     {
+        animating = true;
         Vector2 origin = transform.position;
         float TimerMax = 0.1f;
         float amplitude = 1f;
@@ -40,5 +59,6 @@ public class CharacterBody : MonoBehaviour
         }
 
         transform.position = origin;
+        animating = false;
     }
 }

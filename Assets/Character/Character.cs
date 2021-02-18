@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
     Color color;
     public Status Status { get; private set; }
     public Characteristics Characteristics { get; private set; }
-    CharacterBody body;
+    public CharacterBody body { get; private set; }
 
     public float TimerUntilPlay { get; private set; }
 
