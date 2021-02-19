@@ -94,7 +94,7 @@ public class CardBody : MonoBehaviour
     {
         SetPriority(-1);
         Animating = true;
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1.5f);
 
         //Values
         float gravity = 50f;
