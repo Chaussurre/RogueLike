@@ -1899,6 +1899,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: -5399243636570692009, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
+      propertyPath: m_Offset.x
+      value: 5.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2098741027471375158, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
       propertyPath: m_TargetTexture
       value: 
