@@ -50,7 +50,7 @@ public class Character : MonoBehaviour
         List<Character> Targets = TargetTeam.BattleField.FrontLine.Characters;
         Character Target = Targets[Random.Range(0, Targets.Count)];
         Target.Status.DealDammage(Characteristics.Attack);
-        body.Strike(Target);
+        body.Strike();
     }
 
     private void EndTurn()

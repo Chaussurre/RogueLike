@@ -77,7 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: Hp
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: Speed
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5216077360541420169, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_AnchorMax.x

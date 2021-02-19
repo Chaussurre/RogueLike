@@ -23,9 +23,12 @@ public class CharacterBody : MonoBehaviour
         GetComponent<SpriteRenderer>().sortingLayerName = layer;
     }
 
-    public void Strike(Character target)
+    public void Strike()
     {
-        Vector2 targetDirection = target.body.transform.position - transform.position;
+        Vector2 targetDirection = Vector2.left;
+        if (Character.Team.IsLeft)
+            targetDirection = Vector2.right;
+
         StartCoroutine("StrikeRoutine", targetDirection.normalized);
     }
 
