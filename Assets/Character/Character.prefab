@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9002741990bbce84496d6ff7890f4a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 30
+  Hp: 100
   Attack: 10
   Speed: 500
   Mana: 0

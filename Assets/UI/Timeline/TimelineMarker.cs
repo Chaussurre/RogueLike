@@ -21,6 +21,7 @@ public class TimelineMarker : MonoBehaviour
     public void Init(Character character)
     {
         this.character = character;
+        character.body.SetMarker(this);
         GetComponent<SpriteRenderer>().color = character.body.GetComponent<SpriteRenderer>().color;
     }
 }

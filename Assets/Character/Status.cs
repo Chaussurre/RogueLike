@@ -6,6 +6,7 @@ using UnityEngine;
 public class Status : MonoBehaviour
 {
     public Characteristics characteristics { get; private set; }
+    public Character Character { get; private set; }
     public int Hp { get; private set; }
     public int Mana { get; private set; }
 
@@ -17,6 +18,8 @@ public class Status : MonoBehaviour
 
         if (characteristics.Hp == 0)
             Debug.LogWarning("Max Hp is set to 0");
+
+        Character = GetComponent<Character>();
 
         Hp = characteristics.Hp;
         Mana = characteristics.Mana;
@@ -32,8 +35,11 @@ public class Status : MonoBehaviour
     {
         Hp -= damage;
 
-        if (Hp < 0)
+        if (Hp <= 0)
+        {
             Hp = 0;
+            Kill();
+        }
     }
 
     public void PayMana(int cost)
@@ -66,6 +72,8 @@ public class Status : MonoBehaviour
 
     public void Kill()
     {
-        //Arg
+        Character.body.DestroyMarker();
+        Character.Team.RemoveCharacter(Character);
+        Destroy(Character.gameObject);
     }
 }

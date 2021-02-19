@@ -27,7 +27,9 @@ public class Team : MonoBehaviour
     {
         members.Remove(character);
         //TODO
-        //BattleField.RemoveCharacter(character);
+        BattleField.RemoveCharacter(character);
+        if (members.Count == 0)
+            Loose();
     }
 
     public Character TryToPlay(float timer)
@@ -36,5 +38,10 @@ public class Team : MonoBehaviour
             if(c.IsItMyTurn(timer))
                 return c;
         return null;
+    }
+
+    public void Loose()
+    {
+        Debug.Log(ToString() + " lost !");
     }
 }

@@ -1019,19 +1019,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 335336416763462566, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Big Bad Wolf
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: Speed
-      value: 600
+      value: 650
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: Mana
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: ManaRegen
-      value: 700
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: Hp
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: Attack
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5216077360541420169, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_AnchorMax.x

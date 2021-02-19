@@ -6,6 +6,7 @@ public class CharacterBody : MonoBehaviour
 {
     bool animating = false; //performing an animation
     Character Character;
+    public TimelineMarker marker { get; private set; }
 
     private void Start()
     {
@@ -16,11 +17,6 @@ public class CharacterBody : MonoBehaviour
     {
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
         renderer.color = color;
-    }
-
-    public void SetLayer(string layer)
-    {
-        GetComponent<SpriteRenderer>().sortingLayerName = layer;
     }
 
     public void Strike()
@@ -34,7 +30,6 @@ public class CharacterBody : MonoBehaviour
 
     private void Update()
     {
-        SetLayer(Character.Team.BattleField.Layer);
         if (!animating)
             SetToPosition();
     }
@@ -43,6 +38,17 @@ public class CharacterBody : MonoBehaviour
     {
         Vector2 pos = Character.Team.BattleField.FindPosition(Character);
         transform.position = pos;
+    }
+
+    public void SetMarker(TimelineMarker marker)
+    {
+        this.marker = marker;
+    }
+
+    public void DestroyMarker()
+    {
+        if(marker != null)
+        Destroy(marker.gameObject);
     }
 
     IEnumerator StrikeRoutine(Vector2 direction)

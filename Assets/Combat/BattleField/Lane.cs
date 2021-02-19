@@ -14,6 +14,11 @@ public class Lane : MonoBehaviour
         return Positions.Count <= Characters.Count;
     }
 
+    public bool isEmpty()
+    {
+        return Characters.Count == 0;
+    }
+
     public bool AddCharacter(Character character)
     {
         if (isFull())
