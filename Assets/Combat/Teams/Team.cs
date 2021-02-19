@@ -11,7 +11,7 @@ public class Team : MonoBehaviour
 
     private readonly HashSet<Character> members = new HashSet<Character>();
 
-    private void Start()
+    private void Awake()
     {
         BattleField = GetComponent<BattleField>();
     }

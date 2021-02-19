@@ -18,6 +18,11 @@ public class CharacterBody : MonoBehaviour
         renderer.color = color;
     }
 
+    public void SetLayer(string layer)
+    {
+        GetComponent<SpriteRenderer>().sortingLayerName = layer;
+    }
+
     public void Strike(Character target)
     {
         Vector2 targetDirection = target.body.transform.position - transform.position;
@@ -26,6 +31,7 @@ public class CharacterBody : MonoBehaviour
 
     private void Update()
     {
+        SetLayer(Character.Team.BattleField.Layer);
         if (!animating)
             SetToPosition();
     }

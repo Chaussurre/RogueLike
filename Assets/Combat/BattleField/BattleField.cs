@@ -5,8 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof (LaneManager))]
 public class BattleField : MonoBehaviour
 {
-    public List<Lane> Lanes { get; private set; } = new List<Lane>();
+    public Stack<Lane> Lanes { get; private set; } = new Stack<Lane>();
     public Lane FrontLine { get; private set; }
+    [SerializeField]
+    public string Layer;
     
     public void AddCharacter(Character character)
     {
@@ -20,7 +22,7 @@ public class BattleField : MonoBehaviour
     private Lane CreateLane()
     {
         FrontLine = Instantiate(CombatManager.Instance.TeamManager.LanePrefab, transform);
-        Lanes.Add(FrontLine);
+        Lanes.Push(FrontLine);
         return FrontLine;
     }
 
