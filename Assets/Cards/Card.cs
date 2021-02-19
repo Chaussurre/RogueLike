@@ -6,6 +6,7 @@ public class Card : MonoBehaviour
 {
     public string name;
     public int ManaCost = 1;
+    public int Stamina = 1;
     [TextArea]
     public string description;
     public CardBody body { get; private set; } = null;
@@ -22,18 +23,37 @@ public class Card : MonoBehaviour
     {
         foreach (CardEffect e in Effects)
             e.Play();
+
+        if(Stamina == 0)
+        {
+            Discard();
+        }
+        else
+        {
+            Stamina--;
+            Reshuffle();
+        }
     }
 
     public void Discard()
     {
+        CombatManager.Instance.CardManager.CardHolder.RemoveCard(this);
         if (body != null)
             body.Discard();
+    }
+
+    public void Reshuffle()
+    {
+        CombatManager.Instance.CardManager.CardHolder.RemoveCard(this);
+        CombatManager.Instance.CardManager.Deck.ShuffleCard(this);
+        if (body != null)
+            body.Reshuffle();
     }
 
     public CardBody CreateBody(Vector2 position)
     {
         body = Instantiate(CardManager.BodyPrefab, position, Quaternion.identity, transform);
-        body.SetText(this);
+        body.Innit(this);
         return body;
     }
 
@@ -42,7 +62,7 @@ public class Card : MonoBehaviour
         if (body == null)
             return;
 
-        GameObject.Destroy(body.gameObject);
+        Destroy(body.gameObject);
         body = null;
     }
 }

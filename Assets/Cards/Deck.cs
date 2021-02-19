@@ -16,11 +16,16 @@ public class Deck : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         List<Card> ListCards = CardManager.ListCards;
         CheckNonEmpty();
-        for(int i = 0; i < 25; i++)
+        for(int i = 0; i < 20; i++)
         {
             Card c = Instantiate(ListCards[i % ListCards.Count]);
             Add(c);
         }
+    }
+
+    public void ShuffleCard(Card card)
+    {
+        AddAt(card, Random.Range(0, Cards.Count + 1));
     }
 
     public void Add(Card c)

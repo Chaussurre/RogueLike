@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CardBody : MonoBehaviour
 {
+    Card card;
+
     private Vector2 TargetPosition = Vector2.zero;
     private SpriteRenderer renderer;
     private Collider2D collider;
@@ -17,13 +19,21 @@ public class CardBody : MonoBehaviour
     private Text Description;
     [SerializeField]
     private Text Cost;
+    [SerializeField]
+    private Text Stamina;
     private Canvas canvas;
 
-    public void SetText(Card card)
+    public void Innit(Card card)
+    {
+        this.card = card;
+    }
+
+    private void UpdateText()
     {
         Name.text = card.name;
         Description.text = card.description;
         Cost.text = card.ManaCost.ToString();
+        Stamina.text = card.Stamina.ToString();
     }
 
     private void Start()
@@ -36,6 +46,8 @@ public class CardBody : MonoBehaviour
     {
         if (Animating)
             return;
+        if (card != null)
+            UpdateText();
 
         if (!isOnTargetPosition())
             MoveToTarget();
@@ -89,14 +101,24 @@ public class CardBody : MonoBehaviour
         transform.position = Vector2.Lerp(transform.position, TargetPosition, Velocity);
     }
 
+    public void Reshuffle()
+    {
+        StartCoroutine("ReshuffleRoutine");
+    }
+
+    private void StartAnimating()
+    {
+        Animating = true;
+        GetComponentInChildren<Canvas>().sortingLayerName = "Default";
+        renderer.sortingLayerName = "Default";
+    }
+
     //ANIMATION ROUTINES
     IEnumerator DiscardAnimationRoutine()
     {
-        SetPriority(-1);
-        Animating = true;
-        Destroy(gameObject, 1.5f);
-
+        StartAnimating();
         //Values
+        float wait = 2f;
         float gravity = 50f;
         float initialJump = 20;
         float rangeLateralJump = 5;
@@ -105,12 +127,30 @@ public class CardBody : MonoBehaviour
         float RotationSpeed = Random.Range(-rangeRotationSpeed, rangeRotationSpeed);
         Vector3 Velocity = new Vector3(Random.Range(-rangeLateralJump, rangeLateralJump), initialJump);
 
-        while(true)
+        while(wait > 0)
         {
             Velocity += Vector3.down * gravity * Time.deltaTime;
             transform.position += Velocity * Time.fixedDeltaTime;
             transform.Rotate(Vector3.forward * RotationSpeed * Time.fixedDeltaTime);
+            wait -= Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+
+        card.ResetBody();
+    }
+
+    IEnumerator ReshuffleRoutine()
+    {
+        StartAnimating();
+
+        TargetPosition = CombatManager.Instance.CardManager.Deck.transform.position;
+
+        while(!isOnTargetPosition())
+        {
+            MoveToTarget();
+            yield return new WaitForFixedUpdate();
+        }
+
+        card.ResetBody();
     }
 }

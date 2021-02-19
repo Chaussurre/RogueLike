@@ -40,7 +40,6 @@ public class CardHolder : MonoBehaviour
     public void RemoveCard(Card card)
     {
         Cards.Remove(card);
-        card.Discard();
     }
 
     public void PlayCard(Card card)
