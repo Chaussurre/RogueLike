@@ -33,6 +33,9 @@ public class Status : MonoBehaviour
 
     public void DealDammage(int damage)
     {
+        if (damage < 0)
+            damage = 0;
+
         Hp -= damage;
 
         if (Hp <= 0)
@@ -40,6 +43,14 @@ public class Status : MonoBehaviour
             Hp = 0;
             Kill();
         }
+    }
+
+    public void Heal(int Heal)
+    {
+        Hp += Heal;
+
+        if (Hp > characteristics.Hp)
+            Hp = characteristics.Hp;
     }
 
     public void PayMana(int cost)
@@ -70,7 +81,7 @@ public class Status : MonoBehaviour
         return TimerRegenMana / characteristics.Mana * 100f;
     }
 
-    public void Kill()
+    public virtual void Kill()
     {
         Character.body.DestroyMarker();
         Character.Team.RemoveCharacter(Character);

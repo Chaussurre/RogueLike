@@ -9,6 +9,8 @@ public class Character : MonoBehaviour
     public Characteristics Characteristics { get; private set; }
     public CharacterBody body { get; private set; }
 
+    private List<CardEffect> Abilities = new List<CardEffect>();
+
     public Team Team;
 
     public float TimerUntilPlay { get; private set; }
@@ -20,6 +22,7 @@ public class Character : MonoBehaviour
         body = GetComponentInChildren<CharacterBody>();
         TimerUntilPlay = Characteristics.TurnFrenquency();
         CombatManager.Instance.CreateMarker(this);
+        Abilities.AddRange(GetComponents<CardEffect>());
     }
 
     public bool IsItMyTurn(float timer)
@@ -40,12 +43,16 @@ public class Character : MonoBehaviour
 
     virtual protected bool PlayEffect()
     {
-        Debug.Log(ToString() + " play an effect!");
+        if (Abilities.Count > 0)
+            Abilities[Random.Range(0, Abilities.Count)].Play();
         return true;
     }
 
     private void Attack()
     {
+        if (Characteristics.Attack == 0)
+            return;
+
         Team TargetTeam = CombatManager.Instance.TeamManager.GetOpposingTeam(Team);
         List<Character> Targets = TargetTeam.BattleField.FrontLine.Characters;
         Character Target = Targets[Random.Range(0, Targets.Count)];

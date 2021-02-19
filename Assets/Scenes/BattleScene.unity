@@ -510,8 +510,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1006924703
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 05f2aa902e4dafc4fb2ed598c870a31b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -701,6 +701,10 @@ PrefabInstance:
       propertyPath: test.height
       value: 0.81
       objectReference: {fileID: 0}
+    - target: {fileID: 7274002076748386683, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
+      propertyPath: LaneDistance
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
 --- !u!4 &653698318 stripped
@@ -802,8 +806,11 @@ MonoBehaviour:
   CardHolder: {fileID: 0}
   BodyPrefab: {fileID: 3134263867315607651, guid: a9fb497e2f2e28c41a1cd79afb1b9b07, type: 3}
   ListCards:
-  - {fileID: 8844400311672009806, guid: f5ced74db66745e46ba74c548cb38412, type: 3}
-  - {fileID: 8729749476061642600, guid: 0bc53970ea1685745a51c6a74335e4a4, type: 3}
+  - {fileID: 3380912343153675576, guid: 4d98f557a47334d4fa071e82959bd1f5, type: 3}
+  - {fileID: 1920418690627741928, guid: acd7cf20e08af5c44a7b9a24050f81c8, type: 3}
+  - {fileID: -478447310535698124, guid: b08cf468c9b2c624d80abce78f1067e9, type: 3}
+  - {fileID: 3238314190405462859, guid: 162cf827103ec2b428b5b9610eb09fdb, type: 3}
+  - {fileID: 6900649025498003154, guid: f7f88007b2eefd34083083d781830177, type: 3}
 --- !u!114 &752049350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,7 +930,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1755040185
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 5ee7034ef24aaef49b52673cc1f3ef97, type: 3}
   m_Color: {r: 0.51671416, g: 0.7245153, b: 0.7264151, a: 1}
@@ -1035,7 +1042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: Hp
-      value: 3000
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: Attack
@@ -1217,7 +1224,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1755040185
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: 5ee7034ef24aaef49b52673cc1f3ef97, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -1399,7 +1406,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1755040185
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5ee7034ef24aaef49b52673cc1f3ef97, type: 3}
   m_Color: {r: 0, g: 0.53658915, b: 1, a: 1}
@@ -1453,6 +1460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29acc4124734d5540b113e836e0a3600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartingHand: 4
 --- !u!4 &1473432687
 Transform:
   m_ObjectHideFlags: 0
@@ -1704,11 +1712,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: Mana
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: ManaRegen
       value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: Hp
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: Attack
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5216077360541420169, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1879,6 +1895,10 @@ PrefabInstance:
     - target: {fileID: 6879224930970989067, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274002076748386683, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
+      propertyPath: LaneDistance
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8316722358897258702, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
       propertyPath: m_FrontSortingLayerID

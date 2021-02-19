@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CardHolder : MonoBehaviour
 {
+    [SerializeField]
+    int StartingHand = 4;
+
     public List<Card> Cards { get; private set; } = new List<Card>();
 
     private Deck Deck;
@@ -13,7 +16,7 @@ public class CardHolder : MonoBehaviour
     {
         Player = CombatManager.Instance.Player;
         Deck = CombatManager.Instance.CardManager.Deck;
-        Draw(10);
+        Draw(StartingHand);
     }
 
     public void Draw(int times = 1)

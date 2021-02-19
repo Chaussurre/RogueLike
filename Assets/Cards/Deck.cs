@@ -21,11 +21,25 @@ public class Deck : MonoBehaviour
             Card c = Instantiate(ListCards[i % ListCards.Count]);
             Add(c);
         }
+
+        Shuffle();
     }
 
     public void ShuffleCard(Card card)
     {
         AddAt(card, Random.Range(0, Cards.Count + 1));
+    }
+
+    public void Shuffle()
+    {
+        List<Card> TmpCards = new List<Card>();
+        foreach (Card c in Cards)
+            TmpCards.Add(c);
+
+        Cards.Clear();
+
+        foreach (Card c in TmpCards)
+            ShuffleCard(c);
     }
 
     public void Add(Card c)

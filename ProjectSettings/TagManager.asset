@@ -41,11 +41,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Allies
+  - name: Units
     uniqueID: 314131873
-    locked: 0
-  - name: Enemies
-    uniqueID: 970710401
     locked: 0
   - name: UI
     uniqueID: 1006924703

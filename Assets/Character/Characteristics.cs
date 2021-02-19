@@ -12,11 +12,24 @@ public class Characteristics : MonoBehaviour
 
     public float TurnFrenquency()
     {
+        if (Speed == 0)
+            return 0;
         return 1000f / Speed;
     }
 
     public float ManaRegenFrequency()
     {
+        if (ManaRegen == 0)
+            return 0;
         return 1000f / ManaRegen;
+    }
+
+    public void AddCharacteristics(Characteristics other)
+    {
+        Hp += other.Hp;
+        Attack += other.Attack;
+        Speed += other.Speed;
+        Mana += other.Mana;
+        ManaRegen += other.ManaRegen;
     }
 }
