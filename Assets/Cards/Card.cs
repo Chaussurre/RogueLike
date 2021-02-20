@@ -19,6 +19,14 @@ public class Card : MonoBehaviour
         Effects.AddRange(GetComponents<CardEffect>());
     }
 
+    public bool CanPlay()
+    {
+        foreach (CardEffect e in Effects)
+            if (!e.CanPlay())
+                return false;
+        return true;
+    }
+
     public void Play()
     {
         foreach (CardEffect e in Effects)

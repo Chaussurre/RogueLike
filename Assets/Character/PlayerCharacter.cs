@@ -36,6 +36,9 @@ public class PlayerCharacter : Character
             return false;
         if (Status.Mana < card.ManaCost)
             return false;
+        if (!card.CanPlay())
+            return false;
+
         PlayCard(card);
         return true;
     }
