@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7077089915273521694}
   - component: {fileID: 1715448447434012}
-  - component: {fileID: -5708688499051312651}
   - component: {fileID: -4055358774484497703}
   - component: {fileID: 7634560617723332782}
+  - component: {fileID: -2136593308198492553}
+  - component: {fileID: -3611143395403918574}
   m_Layer: 0
   m_Name: Touch the sky
   m_TagString: Untagged
@@ -50,19 +51,6 @@ MonoBehaviour:
   ManaCost: 3
   Stamina: 0
   description: ' Boost Mana regen and speed'
---- !u!114 &-5708688499051312651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5628578388117562110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8daedc5671cdcda41b618954b122f8c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Element: 4
 --- !u!114 &-4055358774484497703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,9 +65,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 0
   Attack: 0
-  Speed: 50
+  Speed: 100
   Mana: 0
-  ManaRegen: 50
+  ManaRegen: 100
 --- !u!114 &7634560617723332782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,3 +80,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e2341650e7cb14d972cafd8b14c54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2136593308198492553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628578388117562110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d393dcee0ef2646b6d9e863a86fb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlterationPrefab: {fileID: 2974466373658224181, guid: c3345e41b586a8e468cc511f388e36ee, type: 3}
+--- !u!114 &-3611143395403918574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628578388117562110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d692f0c63b4e75c40bd130be024e203f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Element: 3

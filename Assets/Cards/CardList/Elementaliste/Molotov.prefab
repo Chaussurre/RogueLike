@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7648945390453491974}
   - component: {fileID: -132717714585046178}
   - component: {fileID: -7936322063199244179}
-  - component: {fileID: 8388515753220903407}
+  - component: {fileID: -7083677388120519314}
+  - component: {fileID: -7434934015509924156}
   m_Layer: 0
   m_Name: Molotov
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 75
---- !u!114 &8388515753220903407
+--- !u!114 &-7083677388120519314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,7 +72,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7112734218756986497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8daedc5671cdcda41b618954b122f8c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 09d393dcee0ef2646b6d9e863a86fb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Element: 1
+  AlterationPrefab: {fileID: 4139829393168622144, guid: 52d084721b1d9114f8d9b66417d4031b, type: 3}
+--- !u!114 &-7434934015509924156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112734218756986497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d692f0c63b4e75c40bd130be024e203f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Element: 4

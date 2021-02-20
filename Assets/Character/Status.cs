@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Characteristics)), RequireComponent(typeof(StatusDisplay))]
+[RequireComponent(typeof(Characteristics)), 
+    RequireComponent(typeof(StatusDisplay)), 
+    RequireComponent(typeof(StatusAlterationManager))]
 public class Status : MonoBehaviour
 {
     public Characteristics characteristics { get; private set; }
+    public StatusAlterationManager StatusAlteration { get; private set; }
     public Character Character { get; private set; }
     public int Hp { get; private set; }
     public int Mana { get; private set; }
@@ -15,6 +18,7 @@ public class Status : MonoBehaviour
     void Start()
     {
         characteristics = GetComponent<Characteristics>();
+        StatusAlteration = GetComponent<StatusAlterationManager>();
 
         if (characteristics.Hp == 0)
             Debug.LogWarning("Max Hp is set to 0");

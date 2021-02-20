@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7509744933957422833}
   - component: {fileID: 173998134704535767}
   - component: {fileID: -6796012103623498323}
-  - component: {fileID: -2094788909580492970}
+  - component: {fileID: -1561481747890684694}
+  - component: {fileID: 5853830169611849874}
   m_Layer: 0
   m_Name: Etherial breath
   m_TagString: Untagged
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NumberSummons: 1
   SummonPrefab: {fileID: 710665413872861289, guid: 0f0aa70611402294dbee26c3447d8b27, type: 3}
---- !u!114 &-2094788909580492970
+--- !u!114 &-1561481747890684694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,7 +74,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5055747020197718882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8daedc5671cdcda41b618954b122f8c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 09d393dcee0ef2646b6d9e863a86fb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlterationPrefab: {fileID: 1254050713697087524, guid: 445417fcacb49ee45a2d7d30410e2db5, type: 3}
+--- !u!114 &5853830169611849874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5055747020197718882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d692f0c63b4e75c40bd130be024e203f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Element: 0

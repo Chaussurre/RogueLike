@@ -38,6 +38,8 @@ public class PlayerCharacter : Character
             return false;
         if (!card.CanPlay())
             return false;
+        if (!Status.StatusAlteration.AllowPlay(card))
+            return false;
 
         PlayCard(card);
         return true;
