@@ -80,6 +80,11 @@ public class Status : MonoBehaviour
         }
     }
 
+    public void IncreaseMana(int amount)
+    {
+        Mana = Mathf.Min(Mana + amount, characteristics.Mana);
+    }
+
     public float percentManaRegen()
     {
         return TimerRegenMana / characteristics.Mana * 100f;

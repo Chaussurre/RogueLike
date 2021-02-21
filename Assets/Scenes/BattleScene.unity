@@ -835,10 +835,11 @@ MonoBehaviour:
   CardHolder: {fileID: 0}
   BodyPrefab: {fileID: 3134263867315607651, guid: a9fb497e2f2e28c41a1cd79afb1b9b07, type: 3}
   ListCards:
-  - {fileID: 173998134704535767, guid: d30b172066052324788c5ae362cdf972, type: 3}
-  - {fileID: -132717714585046178, guid: fa77d52706dbffa44a5d18717f5ee5b3, type: 3}
-  - {fileID: 7605170009068005708, guid: 84cac84599cf74046a72ad98c80fea38, type: 3}
-  - {fileID: 1715448447434012, guid: 27098f8dd4462754684430a8e653b990, type: 3}
+  - {fileID: 3380912343153675576, guid: 4d98f557a47334d4fa071e82959bd1f5, type: 3}
+  - {fileID: 1920418690627741928, guid: acd7cf20e08af5c44a7b9a24050f81c8, type: 3}
+  - {fileID: -478447310535698124, guid: b08cf468c9b2c624d80abce78f1067e9, type: 3}
+  - {fileID: 3238314190405462859, guid: 162cf827103ec2b428b5b9610eb09fdb, type: 3}
+  - {fileID: 6900649025498003154, guid: f7f88007b2eefd34083083d781830177, type: 3}
 --- !u!114 &752049350
 MonoBehaviour:
   m_ObjectHideFlags: 0

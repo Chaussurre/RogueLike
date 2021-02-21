@@ -9,6 +9,6 @@ public class EffectRegenMana : CardEffect
 
     public override void Play()
     {
-        CombatManager.Instance.Player.Status.ManaRegen(ManaAmount);
+        CombatManager.Instance.Player.Status.IncreaseMana(ManaAmount);
     }
 }
