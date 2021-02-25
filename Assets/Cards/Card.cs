@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class Card : MonoBehaviour, Targetable
 {
-    public string name;
+    public string Name;
     public int ManaCost = 1;
     public int Stamina = 1;
     [TextArea]
@@ -12,11 +12,12 @@ public class Card : MonoBehaviour
     public CardBody body { get; private set; } = null;
     private CardManager CardManager;
 
-    private readonly List<CardEffect> Effects = new List<CardEffect>{};
+    private List<CardEffect> Effects = new List<CardEffect>{};
     private void Awake()
     {
         CardManager = CombatManager.Instance.CardManager;
-        Effects.AddRange(GetComponents<CardEffect>());
+        Effects.AddRange(GetComponentsInChildren<CardEffect>());
+        Effects.Reverse();
     }
 
     public bool CanPlay()
@@ -27,15 +28,14 @@ public class Card : MonoBehaviour
         return true;
     }
 
-    public void Play()
+    public void Play(Character caster)
     {
+
         foreach (CardEffect e in Effects)
-            e.Play();
+            CombatManager.Instance.EventManager.Push(new GameEventPlayEffect(caster, e));
 
         if(Stamina == 0)
-        {
             Discard();
-        }
         else
         {
             Stamina--;

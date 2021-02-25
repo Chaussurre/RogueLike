@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e174c7325dd813342b39dfacddd3b419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Black Blood
+  Name: Black blood
   ManaCost: 1
   Stamina: 4
   description: Heal [ATT] Hp.

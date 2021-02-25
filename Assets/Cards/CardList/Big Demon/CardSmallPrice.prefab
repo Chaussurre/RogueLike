@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e174c7325dd813342b39dfacddd3b419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Small Price
+  Name: Small price
   ManaCost: 1
   Stamina: 1
   description: Loose 10 Hp. Gain 10 Attack.

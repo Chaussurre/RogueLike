@@ -13,9 +13,9 @@ public class CombatManager : MonoBehaviour
 
     public TimelineMarker MarkerPrefab;
 
-    public Character TurnPlaying { get; private set; } = null;
     public TeamManager TeamManager { get; private set; }
     public CardManager CardManager { get; private set; }
+    public GameEventManager EventManager { get; private set; }
     public Timeline TimeLine { get; private set; }
 
     private void Awake()
@@ -28,32 +28,23 @@ public class CombatManager : MonoBehaviour
         TeamManager = GetComponent<TeamManager>();
         CardManager = GetComponent<CardManager>();
         TimeLine = FindObjectOfType<Timeline>();
+        EventManager = FindObjectOfType<GameEventManager>();
     }
 
     private void FixedUpdate()
     {
-        if (TurnPlaying != null)
-            return;
-
-        TurnPlaying = TeamManager.TryToPlay(Time.fixedDeltaTime);
-        if (TurnPlaying != null) 
-            TurnPlaying.StartTurn();
-    }
-
-    public void EndTurn(Character character)
-    {
-        if (character == TurnPlaying)
-            TurnPlaying = null;
+        if (EventManager.IsEmpty())
+        {
+            TeamManager.TryToPlay(Time.fixedDeltaTime);
+            Player.Status.ManaRegen(Time.fixedDeltaTime);
+        }
+        else
+            EventManager.Wait(Time.fixedDeltaTime);
     }
 
     public void CreateMarker(Character character)
     {
         TimelineMarker marker = Instantiate(MarkerPrefab, TimeLine.transform);
         marker.Init(character);
-    }
-
-    public bool isWaiting()
-    {
-        return TurnPlaying == null;
     }
 }

@@ -29,12 +29,6 @@ public class Status : MonoBehaviour
         Mana = characteristics.Mana;
     }
 
-    private void Update()
-    {
-        if (CombatManager.Instance.isWaiting())
-            ManaRegen(Time.deltaTime);
-    }
-
     public void DealDammage(int damage)
     {
         if (damage < 0)

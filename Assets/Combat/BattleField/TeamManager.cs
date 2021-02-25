@@ -35,12 +35,11 @@ public class TeamManager : MonoBehaviour
             RightTeam.AddCharacter(character);
     }
 
-    public Character TryToPlay(float timer)
+    public void TryToPlay(float timer)
     {
-        Character character = LeftTeam.TryToPlay(timer);
-        if (character == null)
-            character = RightTeam.TryToPlay(timer);
-        return character;
+        LeftTeam.TryToPlay(timer);
+        RightTeam.TryToPlay(timer);
+        return;
     }
 
     public Team GetOpposingTeam(Team team)

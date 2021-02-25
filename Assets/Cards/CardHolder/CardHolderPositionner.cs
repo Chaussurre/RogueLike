@@ -123,7 +123,7 @@ public class CardHolderPositionner : MonoBehaviour
         {
             Vector2 position = Vector2.Lerp(StartPos, EndPos, GetFloatCardPosition(i, Cards.Count));
 
-            if (!CombatManager.Instance.Player.CanPlay)
+            if (CombatManager.Instance.EventManager.GetActiveEvent() != "Choosing Cards")
                 position += Vector2.down * WaitingLowering; //When unable to play, the card is slightly lower
 
             Cards[i].body.SetPosition(position);

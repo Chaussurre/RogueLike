@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e174c7325dd813342b39dfacddd3b419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Dark Ceremony
+  Name: Dark ceremony
   ManaCost: 3
   Stamina: 1
   description: Lose 15 hp to summon 3 zombie priests.

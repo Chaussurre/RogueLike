@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e174c7325dd813342b39dfacddd3b419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Summon Goblin
+  Name: Summon
   ManaCost: 2
+  Stamina: 1
   description: Summon a goblin
 --- !u!114 &3829557185438174652
 MonoBehaviour:
@@ -59,4 +60,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1721e7ed752593246bfa37cd1f0a1f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NumberSummons: 1
   SummonPrefab: {fileID: 4604831465308363624, guid: 8dfd90ccbe363794193e9c6ed5d10363, type: 3}

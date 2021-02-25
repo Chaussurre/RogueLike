@@ -32,12 +32,10 @@ public class Team : MonoBehaviour
             Loose();
     }
 
-    public Character TryToPlay(float timer)
+    public void TryToPlay(float timer)
     {
         foreach (Character c in members)
-            if(c.IsItMyTurn(timer))
-                return c;
-        return null;
+            c.TryTurn(timer);
     }
 
     public void Loose()

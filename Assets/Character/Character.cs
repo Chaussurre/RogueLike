@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Status))]
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, Targetable
 {
     public Status Status { get; private set; }
     public Characteristics Characteristics { get; private set; }
@@ -25,30 +25,34 @@ public class Character : MonoBehaviour
         Abilities.AddRange(GetComponents<CardEffect>());
     }
 
-    public bool IsItMyTurn(float timer)
+    public void TryTurn(float timer)
     {
         TimerUntilPlay -= timer;
         if (TimerUntilPlay < 0)
         {
             TimerUntilPlay += Characteristics.TurnFrenquency();
-            return true;
+            PlayTurn();
         }
-        return false;
     }
 
-    public virtual void StartTurn()
+    protected virtual void PlayTurn()
     {
-        StartCoroutine("TurnRoutine");
+        CombatManager.Instance.EventManager.Push(new GameEventEndTurn(this));
+        Attack();
+        PlayEffect();
+        CombatManager.Instance.EventManager.Push(new GameEventStartTurn(this));
     }
 
-    virtual protected bool PlayEffect()
+    virtual protected void PlayEffect()
     {
         if (Abilities.Count > 0)
-            Abilities[Random.Range(0, Abilities.Count)].Play();
-        return true;
+        {
+            CardEffect Ability = Abilities[Random.Range(0, Abilities.Count)];
+            CombatManager.Instance.EventManager.Push(new GameEventPlayEffect(this, Ability));
+        }
     }
 
-    private void Attack()
+    public void Attack()
     {
         if (Characteristics.Attack == 0)
             return;
@@ -56,22 +60,7 @@ public class Character : MonoBehaviour
         Team TargetTeam = CombatManager.Instance.TeamManager.GetOpposingTeam(Team);
         List<Character> Targets = TargetTeam.BattleField.FrontLine.Characters;
         Character Target = Targets[Random.Range(0, Targets.Count)];
-        Target.Status.DealDammage(Characteristics.Attack);
-        body.Strike();
-    }
-
-    private void EndTurn()
-    {
-        CombatManager.Instance.EndTurn(this);
-    }
-
-    IEnumerator TurnRoutine()
-    {
-        while (!PlayEffect())
-            yield return new WaitForFixedUpdate();
-        Attack();
-        yield return new WaitForSeconds(0.5f);
-        EndTurn();
+        CombatManager.Instance.EventManager.Push(new GameEventStrike(this, Target));
     }
 }
 

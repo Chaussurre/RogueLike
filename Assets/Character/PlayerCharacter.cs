@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerCharacter : Character
 {
-    public bool CanPlay { get; private set; } = false; //When the player decide he played all his card
     private CardHolder CardHolder;
 
     protected override void Start()
@@ -13,26 +12,20 @@ public class PlayerCharacter : Character
         base.Start();
     }
 
-    public override void StartTurn()
+    protected override void PlayTurn()
     {
-        CanPlay = true;
-        CombatManager.Instance.CardManager.CardHolder.Draw();
-        base.StartTurn();
+        CombatManager.Instance.EventManager.Push(new GameEventEndTurn(this));
+        Attack();
+        CombatManager.Instance.EventManager.Push(new GameEventChoosingCards());
+        CombatManager.Instance.EventManager.Push(new GameEventStartTurnPlayer());
     }
 
-    protected override bool PlayEffect()
-    {
-        return !CanPlay;
-    }
 
-    public void StopPlayingCards()
-    {
-        CanPlay = false;
-    }
+    protected override void PlayEffect(){}
 
     public bool TryPlayCard(Card card)
     {
-        if (!CanPlay)
+        if (CombatManager.Instance.EventManager.GetActiveEvent() != GameEventChoosingCards.Name)
             return false;
         if (Status.Mana < card.ManaCost)
             return false;
@@ -48,7 +41,7 @@ public class PlayerCharacter : Character
     private void PlayCard(Card card)
     {
         Status.PayMana(card.ManaCost);
-        card.Play();
+        CombatManager.Instance.EventManager.Push(new GameEventPlayCard(this, card));
         CardHolder.RemoveCard(card);
     }
 }

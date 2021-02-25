@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e174c7325dd813342b39dfacddd3b419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Card Logger
+  Name: Logger
+  ManaCost: 1
+  Stamina: 1
+  description: 
 --- !u!114 &6680109747636865520
 MonoBehaviour:
   m_ObjectHideFlags: 0

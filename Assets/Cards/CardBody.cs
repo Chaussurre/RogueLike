@@ -30,7 +30,7 @@ public class CardBody : MonoBehaviour
 
     private void UpdateText()
     {
-        Name.text = card.name;
+        Name.text = card.Name;
         Description.text = card.description;
         Cost.text = card.ManaCost.ToString();
         Stamina.text = card.Stamina.ToString();
