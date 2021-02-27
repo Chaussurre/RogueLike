@@ -30,8 +30,8 @@ public class Character : MonoBehaviour, Targetable
         TimerUntilPlay -= timer;
         if (TimerUntilPlay < 0)
         {
-            TimerUntilPlay += Characteristics.TurnFrenquency();
             PlayTurn();
+            TimerUntilPlay += Characteristics.TurnFrenquency();
         }
     }
 

@@ -11,11 +11,6 @@ public class GameEventDraw : GameEvent
         this.NbCards = NbCards;
     }
 
-    public override string GetName()
-    {
-        return "Draw Cards";
-    }
-
     public override void Trigger()
     {
         CombatManager.Instance.CardManager.CardHolder.Draw(NbCards);

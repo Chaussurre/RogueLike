@@ -11,11 +11,6 @@ public class GameEventWait : GameEvent
         TimeToWait = Time;
     }
 
-    public override string GetName()
-    {
-        return "Wait";
-    }
-
     public override bool IsFinished()
     {
         return Timer >= TimeToWait;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class StatusAlteration : MonoBehaviour
 {
-    StatusAlterationManager manager;
+    protected StatusAlterationManager manager;
 
     public string Name;
     [TextArea]
@@ -20,6 +20,7 @@ public abstract class StatusAlteration : MonoBehaviour
     private void Start()
     {
         manager = GetComponentInParent<StatusAlterationManager>();
+        OnStart();
     }
     public virtual void AddStacks(StatusAlteration otherPrefab)
     {
@@ -54,9 +55,12 @@ public abstract class StatusAlteration : MonoBehaviour
 
     public void Clear()
     {
+        OnClear();
         manager.RemoveAlteration(this);
     }
 
     public virtual bool AllowPlay(Card card) { return true; }
+    protected virtual void OnStart(){}
     protected virtual void Effect(){}
+    protected virtual void OnClear(){}
 }

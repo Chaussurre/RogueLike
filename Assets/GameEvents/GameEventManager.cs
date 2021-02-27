@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameEventManager : MonoBehaviour
 {
     public readonly Stack<GameEvent> Events = new Stack<GameEvent>();
+    public readonly HashSet<GameEventWatcher> Watchers = new HashSet<GameEventWatcher>();
 
     public bool IsEmpty()
     {
@@ -26,10 +27,17 @@ public class GameEventManager : MonoBehaviour
 
     private void PlayEvent()
     {
-        //TODO Allow external forces to prevent event trigger
-
         GameEvent gameEvent = Events.Pop();
+
+        foreach (GameEventWatcher watcher in Watchers)
+            if (watcher.Check(gameEvent) && !watcher.IsAllowed(gameEvent))
+                return;
+        
         gameEvent.Trigger();
+
+        foreach (GameEventWatcher watcher in Watchers)
+            if (watcher.Check(gameEvent))
+                watcher.OnTrigger(gameEvent);
     }
 
     public void Pop()
@@ -37,17 +45,27 @@ public class GameEventManager : MonoBehaviour
         Events.Pop();
     }
 
-    public void Pop(string name)
+    public void Pop(System.Type type)
     {
-        if (Events.Peek().GetName() == name)
+        if (Events.Peek().GetType() == type)
             Events.Pop();
     }
 
-    public string GetActiveEvent()
+    public System.Type GetActiveEvent()
     {
         if (IsEmpty())
-            return "";
+            return null;
 
-        return Events.Peek().GetName();
+        return Events.Peek().GetType();
+    }
+
+    public void AddWatcher(GameEventWatcher watcher)
+    {
+        Watchers.Add(watcher);
+    }
+
+    public void RemoveWatcher(GameEventWatcher watcher)
+    {
+        Watchers.Remove(watcher);
     }
 }

@@ -22,8 +22,6 @@ public abstract class GameEvent
 
     public virtual void OnWait() { }
 
-    public abstract string GetName();
-
     public virtual void Trigger() { }
 
     public virtual bool IsFinished() { return true; }

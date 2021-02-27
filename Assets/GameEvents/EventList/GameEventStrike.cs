@@ -12,15 +12,10 @@ public class GameEventStrike : GameEvent
         this.Target = Target;
     }
 
-    public override string GetName()
-    {
-        return "Strike";
-    }
-
     public override void Trigger()
     {
-        Target.Status.DealDammage(Source.Characteristics.Attack);
         Source.body.Strike();
-        CombatManager.Instance.EventManager.Push(new GameEventWait(0.5f));
+        CombatManager.Instance.EventManager.Push(new GameEventDealDamage(Source, new List<Character>() { Target }, Source.Characteristics.Attack));
+        CombatManager.Instance.EventManager.Push(new GameEventWait(StrikeTime));
     }
 }

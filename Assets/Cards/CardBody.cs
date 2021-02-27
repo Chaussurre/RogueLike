@@ -65,6 +65,9 @@ public class CardBody : MonoBehaviour
 
     public void SetPriority(int priority)
     {
+        if (renderer == null)
+            return;
+
         renderer.sortingOrder = priority * 2; //Card sorting layer is even so canvas can be between cards
         canvas.sortingOrder = priority * 2 + 1;
     }

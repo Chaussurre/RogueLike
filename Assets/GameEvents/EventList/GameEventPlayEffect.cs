@@ -9,11 +9,6 @@ class GameEventPlayEffect : GameEvent
         this.Effect = Effect;
     }
 
-    public override string GetName()
-    {
-        return "Play effect";
-    }
-
     public override void Trigger() 
     {
         if (Effect.CanPlay())

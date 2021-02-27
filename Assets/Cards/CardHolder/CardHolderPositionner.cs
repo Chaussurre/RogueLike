@@ -87,6 +87,9 @@ public class CardHolderPositionner : MonoBehaviour
 
     void GroupHoveredCard(int cardIndex)
     {
+        if (cardIndex < 0 || cardIndex >= Cards.Count)
+            return;
+
         Vector2 StartPos = transform.position + Vector3.left * (HolderSize / 2f);
         Vector2 EndPos = transform.position + Vector3.right * (HolderSize / 2f);
 
@@ -123,7 +126,7 @@ public class CardHolderPositionner : MonoBehaviour
         {
             Vector2 position = Vector2.Lerp(StartPos, EndPos, GetFloatCardPosition(i, Cards.Count));
 
-            if (CombatManager.Instance.EventManager.GetActiveEvent() != "Choosing Cards")
+            if (CombatManager.Instance.EventManager.GetActiveEvent() != typeof(GameEventPlayerTurn))
                 position += Vector2.down * WaitingLowering; //When unable to play, the card is slightly lower
 
             Cards[i].body.SetPosition(position);

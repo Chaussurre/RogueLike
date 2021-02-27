@@ -9,6 +9,7 @@ public class EffectHeal : CardEffect
 
     public override void Play()
     {
-        CombatManager.Instance.Player.Status.Heal(heal);
+        PlayerCharacter Player = CombatManager.Instance.Player;
+        CombatManager.Instance.EventManager.Push(new GameEventHeal(Player, new List<Character>() { Player }, heal));
     }
 }

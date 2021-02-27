@@ -10,13 +10,10 @@ public class GameEventPlayCard : GameEvent
         this.Card = Card;
     }
 
-    public override string GetName()
-    {
-        return "Play Card";
-    }
-
     public override void Trigger()
     {
         Card.Play(Source);
+        if (Card.body != null)
+            Card.body.SetPosition(Vector2.zero);
     }
 }

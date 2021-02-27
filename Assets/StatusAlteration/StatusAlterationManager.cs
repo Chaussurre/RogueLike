@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatusAlterationManager : MonoBehaviour
 {
-    Status Status;
+    public Status Status;
 
     List<StatusAlteration> Alterations = new List<StatusAlteration>();
 

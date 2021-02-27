@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9aee12a27d70f4893da13599306c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Status: {fileID: 0}
 --- !u!114 &440473897 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 440473897, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
@@ -312,10 +313,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 752049351}
-        m_TargetAssemblyTypeName: GameEventManager, Assembly-CSharp
-        m_MethodName: Pop
-        m_Mode: 5
+      - m_Target: {fileID: 691010811}
+        m_TargetAssemblyTypeName: PlayerCharacter, Assembly-CSharp
+        m_MethodName: EndTurn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -764,6 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9aee12a27d70f4893da13599306c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Status: {fileID: 0}
 --- !u!1 &752049346
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +843,7 @@ MonoBehaviour:
   - {fileID: -478447310535698124, guid: b08cf468c9b2c624d80abce78f1067e9, type: 3}
   - {fileID: 3238314190405462859, guid: 162cf827103ec2b428b5b9610eb09fdb, type: 3}
   - {fileID: 6900649025498003154, guid: f7f88007b2eefd34083083d781830177, type: 3}
+  - {fileID: -2131870747340540531, guid: 2036bd9456b061444a6b1ba271c34f8c, type: 3}
 --- !u!114 &752049350
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,32 +16,27 @@ public class PlayerCharacter : Character
     {
         CombatManager.Instance.EventManager.Push(new GameEventEndTurn(this));
         Attack();
-        CombatManager.Instance.EventManager.Push(new GameEventChoosingCards());
+        CombatManager.Instance.EventManager.Push(new GameEventPlayerTurn());
         CombatManager.Instance.EventManager.Push(new GameEventStartTurnPlayer());
     }
 
+    public void EndTurn()
+    {
+        CombatManager.Instance.EventManager.Pop(typeof(GameEventPlayerTurn));
+    }
 
     protected override void PlayEffect(){}
 
-    public bool TryPlayCard(Card card)
+    public bool TryPlayCard(Card Card)
     {
-        if (CombatManager.Instance.EventManager.GetActiveEvent() != GameEventChoosingCards.Name)
+        if (CombatManager.Instance.EventManager.GetActiveEvent() != typeof(GameEventPlayerTurn))
             return false;
-        if (Status.Mana < card.ManaCost)
+        if (Status.Mana < Card.ManaCost)
             return false;
-        if (!card.CanPlay())
-            return false;
-        if (!Status.StatusAlteration.AllowPlay(card))
+        if (!Card.CanPlay())
             return false;
 
-        PlayCard(card);
+        CombatManager.Instance.EventManager.Push(new GameEventChoosingCard(Card));
         return true;
-    }
-
-    private void PlayCard(Card card)
-    {
-        Status.PayMana(card.ManaCost);
-        CombatManager.Instance.EventManager.Push(new GameEventPlayCard(this, card));
-        CardHolder.RemoveCard(card);
     }
 }
