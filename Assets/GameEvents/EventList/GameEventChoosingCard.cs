@@ -13,7 +13,7 @@ public class GameEventChoosingCard : GameEvent
     public override void Trigger()
     {
         Source.Status.PayMana(Card.ManaCost);
-        CombatManager.Instance.EventManager.Push(new GameEventPlayCard(Source, Card));
         CombatManager.Instance.CardManager.CardHolder.RemoveCard(Card);
+        CombatManager.Instance.EventManager.Push(new GameEventPlayCard(Source, Card));
     }
 }

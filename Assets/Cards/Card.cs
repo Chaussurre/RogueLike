@@ -30,7 +30,6 @@ public class Card : MonoBehaviour, Targetable
 
     public void Play(Character caster)
     {
-
         foreach (CardEffect e in Effects)
             CombatManager.Instance.EventManager.Push(new GameEventPlayEffect(caster, e));
 
@@ -45,17 +44,12 @@ public class Card : MonoBehaviour, Targetable
 
     public void Discard()
     {
-        CombatManager.Instance.CardManager.CardHolder.RemoveCard(this);
-        if (body != null)
-            body.Discard();
+        CombatManager.Instance.EventManager.Push(new GameEventDiscard(this));
     }
 
     public void Reshuffle()
     {
-        CombatManager.Instance.CardManager.CardHolder.RemoveCard(this);
-        CombatManager.Instance.CardManager.Deck.ShuffleCard(this);
-        if (body != null)
-            body.Reshuffle();
+        CombatManager.Instance.EventManager.Push(new GameEventPlayCardShuffle(this));
     }
 
     public CardBody CreateBody(Vector2 position)

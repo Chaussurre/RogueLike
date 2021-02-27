@@ -14,6 +14,9 @@ public class GameEventPlayCard : GameEvent
     {
         Card.Play(Source);
         if (Card.body != null)
+        {
             Card.body.SetPosition(Vector2.zero);
+            CombatManager.Instance.EventManager.Push(new GameEventWait(0.5f));
+        }
     }
 }
