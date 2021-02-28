@@ -89,7 +89,7 @@ public class CardHolderPositionner : MonoBehaviour
     {
         if (cardIndex < 0 || cardIndex >= Cards.Count)
             return;
-
+     
         Vector2 StartPos = transform.position + Vector3.left * (HolderSize / 2f);
         Vector2 EndPos = transform.position + Vector3.right * (HolderSize / 2f);
 
@@ -102,8 +102,8 @@ public class CardHolderPositionner : MonoBehaviour
         Debug.DrawLine(StartCardSpace + Vector2.up, EndCardSpace + Vector2.up, Color.green);
         Debug.DrawLine(EndCardSpace, EndPos, Color.red);
 
-        GroupCards(StartPos, StartCardSpace, Cards.GetRange(0, cardIndex));
-        GroupCards(EndCardSpace, EndPos, Cards.GetRange(cardIndex + 1, Cards.Count - cardIndex - 1), true);
+        GroupCards(StartPos, StartCardSpace, GetRange(0, cardIndex));
+        GroupCards(EndCardSpace, EndPos, GetRange(cardIndex + 1, Cards.Count - cardIndex - 1), true);
 
         if (Cards[cardIndex] != CardGrabbed) //Hovered card isn't grabbed so it doesn't follow mouse
             Cards[cardIndex].body.SetPosition(CardPosition + Vector2.up * HoveredCardUp);
@@ -111,6 +111,15 @@ public class CardHolderPositionner : MonoBehaviour
             Cards[cardIndex].body.SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
         Cards[cardIndex].body.SetPriority(Cards.Count); //Highest priority for the hovered/grabbed card
+    }
+
+    List<Card> GetRange(int Index, int NbCards)
+    {
+        Index = Mathf.Max(0, Index);
+        Index = Mathf.Min(Cards.Count, Index);
+        NbCards = Mathf.Max(0, NbCards);
+        NbCards = Mathf.Min(Cards.Count - Index, NbCards);
+        return Cards.GetRange(Index, NbCards);
     }
 
     void GroupCards(Vector2 StartPos, Vector2 EndPos, List<Card> Cards, bool reversePriority = false)

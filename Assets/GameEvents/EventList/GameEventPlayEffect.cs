@@ -12,7 +12,6 @@ class GameEventPlayEffect : GameEvent
     public override void Trigger() 
     {
         if (Effect.CanPlay())
-            Effect.Play();
-        CombatManager.Instance.EventManager.Push(new GameEventWait(0.5f));
+            Effect.Play(Source);
     }
 }

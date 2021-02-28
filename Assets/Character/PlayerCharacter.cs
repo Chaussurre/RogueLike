@@ -1,42 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerCharacter : Character
 {
-    private CardHolder CardHolder;
+    GameEventManager EventManager;
 
     protected override void Start()
     {
-        CardHolder = CombatManager.Instance.CardManager.CardHolder;
         base.Start();
+        EventManager = CombatManager.Instance.EventManager;
+        GameEventWatcher watcher = new GameEventWatcher(typeof(GameEventStartTurn), this, default);
+        watcher.SetOnTrigger(ActionStartTurnDraw);
+        EventManager.AddWatcher(watcher);
+    }
+    private void ActionStartTurnDraw(GameEvent _)
+    {
+        EventManager.Push(new GameEventDraw(this, 1));
     }
 
     protected override void PlayTurn()
     {
-        CombatManager.Instance.EventManager.Push(new GameEventEndTurn(this));
+        EventManager.Push(new GameEventEndTurn(this));
         Attack();
-        CombatManager.Instance.EventManager.Push(new GameEventPlayerTurn());
-        CombatManager.Instance.EventManager.Push(new GameEventStartTurnPlayer());
+        EventManager.Push(new GameEventPlayerTurn());
+        EventManager.Push(new GameEventStartTurn(this));
     }
 
     public void EndTurn()
     {
-        CombatManager.Instance.EventManager.Pop(typeof(GameEventPlayerTurn));
+        EventManager.Pop(typeof(GameEventPlayerTurn));
     }
 
     protected override void PlayEffect(){}
 
     public bool TryPlayCard(Card Card)
     {
-        if (CombatManager.Instance.EventManager.GetActiveEvent() != typeof(GameEventPlayerTurn))
+        if (EventManager.GetActiveEvent() != typeof(GameEventPlayerTurn))
             return false;
         if (Status.Mana < Card.ManaCost)
             return false;
         if (!Card.CanPlay())
             return false;
 
-        CombatManager.Instance.EventManager.Push(new GameEventChoosingCard(Card));
+        EventManager.Push(new GameEventChoosingCard(Card));
         return true;
     }
 }

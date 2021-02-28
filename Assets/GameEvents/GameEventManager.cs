@@ -42,13 +42,14 @@ public class GameEventManager : MonoBehaviour
 
     public void Pop()
     {
-        Events.Pop();
+        if (Events.Count > 0)
+            Events.Pop();
     }
 
     public void Pop(System.Type type)
     {
         if (Events.Peek().GetType() == type)
-            Events.Pop();
+            Pop();
     }
 
     public System.Type GetActiveEvent()

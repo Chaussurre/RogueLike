@@ -26,11 +26,11 @@ public class GameEventWatcher
             return false;
 
         if (Source != null && Source != gameEvent.Source)
-            return false;
+            return false;;
 
-        if (!gameEvent.Targets.Contains(Target))
+        if (Target != null && !gameEvent.Targets.Contains(Target))
             return false;
-
+        
         return true;
     }
 

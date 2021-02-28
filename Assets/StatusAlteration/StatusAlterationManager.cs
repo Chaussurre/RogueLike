@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StatusAlterationManager : MonoBehaviour
 {
+    [HideInInspector]
     public Status Status;
 
     List<StatusAlteration> Alterations = new List<StatusAlteration>();

@@ -12,8 +12,9 @@ public class EffectCharacteristicsChange : CardEffect
         Characteristics = GetComponent<Characteristics>();
     }
 
-    public override void Play()
+    public override void Play(Character caster)
     {
-        CombatManager.Instance.Player.Characteristics.AddCharacteristics(Characteristics);
+        Character Target = caster; //TODO allow different targets
+        CombatManager.Instance.EventManager.Push(new GameEventChangeCharacteristics(caster, new List<Character>() { Target }, Characteristics));
     }
 }

@@ -6,9 +6,9 @@ public class EffectDamage : CardEffect
 {
     [SerializeField]
     int damage;
-    public override void Play()
+    public override void Play(Character caster)
     {
-        CombatManager.Instance.BadGuy.Status.DealDammage(damage);
-        Debug.Log("Dealt " + damage + " damage(s) to enemy");
+        Character Target = CombatManager.Instance.BadGuy;
+        CombatManager.Instance.EventManager.Push(new GameEventDealDamage(caster, new List<Character>() { Target }, damage));
     }
 }

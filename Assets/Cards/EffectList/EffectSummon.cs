@@ -8,12 +8,12 @@ public class EffectSummon : CardEffect
     int NumberSummons = 1;
     [SerializeField]
     Character SummonPrefab;
-    public override void Play()
+    public override void Play(Character caster)
     {
         for (int i = 0; i < NumberSummons; i++)
         {
             Character summon = Instantiate(SummonPrefab);
-            CombatManager.Instance.TeamManager.AddCharacter(summon);
+            CombatManager.Instance.TeamManager.AddCharacter(summon, caster.Team);
         }
     }
 }

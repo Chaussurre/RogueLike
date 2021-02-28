@@ -8,12 +8,14 @@ public class Team : MonoBehaviour
     public bool IsLeft;
 
     public BattleField BattleField { get; private set; }
+    public Camera Camera { get; private set; }
 
-    private readonly HashSet<Character> members = new HashSet<Character>();
+    public readonly HashSet<Character> members = new HashSet<Character>();
 
     private void Awake()
     {
         BattleField = GetComponent<BattleField>();
+        Camera = GetComponentInChildren<Camera>();
     }
 
     public void AddCharacter(Character character)

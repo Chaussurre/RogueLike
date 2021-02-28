@@ -7,8 +7,8 @@ public class EffectSelfDamage : CardEffect
     [SerializeField]
     int Damage;
 
-    public override void Play()
+    public override void Play(Character caster)
     {
-        CombatManager.Instance.Player.Status.DealDammage(Damage);
+        caster.Status.DealDammage(Damage);
     }
 }

@@ -7,8 +7,8 @@ public class EffectRegenMana : CardEffect
     [SerializeField]
     int ManaAmount;
 
-    public override void Play()
+    public override void Play(Character caster)
     {
-        CombatManager.Instance.Player.Status.IncreaseMana(ManaAmount);
+        caster.Status.IncreaseMana(ManaAmount);
     }
 }

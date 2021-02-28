@@ -7,6 +7,8 @@ public class LaneManager : MonoBehaviour
 {
     public Transform StartingPoint;
     private BoxCollider2D Box;
+    private MeshRenderer Projection;
+    private Camera Camera;
     public float LaneDistance;
 
     Team Team;
@@ -17,6 +19,8 @@ public class LaneManager : MonoBehaviour
     {
         Team = GetComponent<Team>();
         Box = GetComponent<BoxCollider2D>();
+        Camera = GetComponentInChildren<Camera>();
+        Projection = GetComponentInChildren<MeshRenderer>();
     }
 
     private void Update()
@@ -25,7 +29,7 @@ public class LaneManager : MonoBehaviour
         if (Grabbed)
         {
             Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            StartingPoint.position += Vector3.right * (MousePos.x - GrabbedPosition);
+            Camera.transform.position -= Vector3.right * (MousePos.x - GrabbedPosition);
             GrabbedPosition = MousePos.x;
             Grabbed = !Input.GetMouseButtonUp(0);
         }
@@ -53,5 +57,10 @@ public class LaneManager : MonoBehaviour
         Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Position = MousePos.x;
         return Box.OverlapPoint(MousePos) && Input.GetMouseButtonDown(0);
+    }
+
+    public Vector2 GetOffset()
+    {
+        return -Projection.transform.position;
     }
 }

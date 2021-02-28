@@ -7,8 +7,8 @@ public class EffectSelfAlteration : CardEffect
     [SerializeField]
     StatusAlteration AlterationPrefab;
 
-    public override void Play()
+    public override void Play(Character caster)
     {
-        CombatManager.Instance.Player.Status.StatusAlteration.AddAlteration(AlterationPrefab);
+        caster.Status.StatusAlteration.AddAlteration(AlterationPrefab);
     }
 }

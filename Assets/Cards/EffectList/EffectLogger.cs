@@ -6,7 +6,7 @@ public class EffectLogger : CardEffect
 {
     public string message = "HEY YOU PLAYED A CARD CONGRATS";
 
-    public override void Play()
+    public override void Play(Character caster)
     {
         Debug.Log(message);
     }

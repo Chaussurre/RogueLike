@@ -27,12 +27,9 @@ public class TeamManager : MonoBehaviour
         RightTeam.AddCharacter(BadGuy);
     }
 
-    public void AddCharacter(Character character, bool Ally = true)
+    public void AddCharacter(Character character, Team team)
     {
-        if (Ally)
-            LeftTeam.AddCharacter(character);
-        else
-            RightTeam.AddCharacter(character);
+        team.AddCharacter(character);
     }
 
     public void TryToPlay(float timer)

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7707488439506888480}
   - component: {fileID: 2650561961364667013}
   - component: {fileID: 598691050471968829}
+  - component: {fileID: 3509202936720947291}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -89,6 +90,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 906b072fff4c62a4b8397d2249966c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3509202936720947291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335336416763462566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a9aee12a27d70f4893da13599306c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Status: {fileID: 0}
 --- !u!1 &7485698282259230560
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +115,7 @@ GameObject:
   - component: {fileID: 805198159709415007}
   - component: {fileID: 6796278760872453033}
   - component: {fileID: 2856906160948342456}
-  - component: {fileID: 2473971235122195669}
+  - component: {fileID: 7006590886645471746}
   m_Layer: 0
   m_Name: Sprite Holder
   m_TagString: Untagged
@@ -198,10 +212,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.7380606, y: 0.9509628}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -212,9 +226,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.81977, y: 0.6309695}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2473971235122195669
+--- !u!114 &7006590886645471746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,7 +237,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7485698282259230560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 904b289f4721e474aa63d8820a6e2ed9, type: 3}
+  m_Script: {fileID: 11500000, guid: ae454f455d340e34fba7582f0155e608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1478237598523857592

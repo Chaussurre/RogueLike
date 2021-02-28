@@ -7,6 +7,7 @@ public class Card : MonoBehaviour, Targetable
     public string Name;
     public int ManaCost = 1;
     public int Stamina = 1;
+    GameEventManager EventManager;
     [TextArea]
     public string description;
     public CardBody body { get; private set; } = null;
@@ -16,6 +17,7 @@ public class Card : MonoBehaviour, Targetable
     private void Awake()
     {
         CardManager = CombatManager.Instance.CardManager;
+        EventManager = CombatManager.Instance.EventManager;
         Effects.AddRange(GetComponentsInChildren<CardEffect>());
         Effects.Reverse();
     }
@@ -30,15 +32,21 @@ public class Card : MonoBehaviour, Targetable
 
     public void Play(Character caster)
     {
+        StaminaDecrease();
         foreach (CardEffect e in Effects)
-            CombatManager.Instance.EventManager.Push(new GameEventPlayEffect(caster, e));
+            EventManager.Push(new GameEventPlayEffect(caster, e));
+        foreach (CardEffect e in Effects)
+            e.OnStack(caster);
+    }
 
-        if(Stamina == 0)
-            Discard();
+    private void StaminaDecrease()
+    {
+        if (Stamina == 0)
+            EventManager.Push(new GameEventDiscard(this));
         else
         {
             Stamina--;
-            Reshuffle();
+            EventManager.Push(new GameEventPlayCardShuffle(this));
         }
     }
 

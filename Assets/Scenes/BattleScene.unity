@@ -202,24 +202,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125697382}
   m_CullTransparentMesh: 0
---- !u!1 &209914310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 335336416763462566, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
-  m_PrefabInstance: {fileID: 888191613}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &209914314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209914310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a9aee12a27d70f4893da13599306c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Status: {fileID: 0}
 --- !u!114 &440473897 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 440473897, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
@@ -838,12 +820,8 @@ MonoBehaviour:
   CardHolder: {fileID: 0}
   BodyPrefab: {fileID: 3134263867315607651, guid: a9fb497e2f2e28c41a1cd79afb1b9b07, type: 3}
   ListCards:
-  - {fileID: 3380912343153675576, guid: 4d98f557a47334d4fa071e82959bd1f5, type: 3}
-  - {fileID: 1920418690627741928, guid: acd7cf20e08af5c44a7b9a24050f81c8, type: 3}
-  - {fileID: -478447310535698124, guid: b08cf468c9b2c624d80abce78f1067e9, type: 3}
-  - {fileID: 3238314190405462859, guid: 162cf827103ec2b428b5b9610eb09fdb, type: 3}
+  - {fileID: 412784369542834314, guid: b67e306ad43d3e747b6012208ed2547f, type: 3}
   - {fileID: 6900649025498003154, guid: f7f88007b2eefd34083083d781830177, type: 3}
-  - {fileID: -2131870747340540531, guid: 2036bd9456b061444a6b1ba271c34f8c, type: 3}
 --- !u!114 &752049350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1091,7 +1069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650561961364667013, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: Attack
-      value: 25
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5216077360541420169, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1113,7 +1091,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7707488439506888480, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
   m_PrefabInstance: {fileID: 888191613}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209914310}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56ee94a67b2b71041a0dc8c8f1496564, type: 3}

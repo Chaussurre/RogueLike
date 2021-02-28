@@ -49,6 +49,7 @@ public class Character : MonoBehaviour, Targetable
         {
             CardEffect Ability = Abilities[Random.Range(0, Abilities.Count)];
             CombatManager.Instance.EventManager.Push(new GameEventPlayEffect(this, Ability));
+            Ability.OnStack(this);
         }
     }
 
