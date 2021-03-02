@@ -9,15 +9,18 @@ public class CharacterTargetter : Targetter<Character>
     public CharacterTargetter(Character Source, Team Team, int NbTargets = 1) : base(Source, NbTargets)
     {
         this.Team = Team;
+        foreach (Character member in Team.members)
+            Candidates.Add(member);
     }
 
     public override void AutoTarget(List<Character> Targets)
     {
         List<Character> Tmp = new List<Character>();
-        foreach (Character character in Team.members)
+        foreach (Character character in Candidates)
             Tmp.Insert(Random.Range(0, Targets.Count + 1), character);
 
-        Targets.AddRange(Tmp.GetRange(0, NbTargets));
+        int MaxNbTargets = Mathf.Min(NbTargets, Candidates.Count);
+        Targets.AddRange(Tmp.GetRange(0,  MaxNbTargets));
     }
 
     protected override bool TargetAtPosition(Vector2 mousePosisition, List<Character> Targets)

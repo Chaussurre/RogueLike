@@ -17,7 +17,6 @@ public class GameEventPlayCard : GameEvent
 
     public override void Trigger()
     {
-        Debug.Log("Trigger");
         Card.Play(Source);
     }
 }
