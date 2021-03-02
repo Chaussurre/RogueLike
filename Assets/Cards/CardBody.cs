@@ -167,4 +167,9 @@ public class CardBody : MonoBehaviour
     {
         this.Locked = Locked;
     }
+
+    public bool IsLocked()
+    {
+        return Locked;
+    }
 }

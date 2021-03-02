@@ -49,7 +49,14 @@ public class CardHolderPositionner : MonoBehaviour
         if (!Input.GetMouseButton(0))
             CardGrabbed = null;
         if (Input.GetMouseButtonDown(0))
+        {
             CardGrabbed = Cards[HoveredCard];
+            if (CardGrabbed.body.IsLocked())
+            {
+                CombatManager.Instance.EventManager.Cancel();
+                CardGrabbed.body.Lock(false);
+            }
+        }
     }
 
     void TryPlayCard()
