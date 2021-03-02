@@ -61,3 +61,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heal: 10
+  NbTargets: 2

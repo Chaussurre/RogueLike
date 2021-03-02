@@ -33,10 +33,22 @@ public class Card : MonoBehaviour, Targetable
     public void Play(Character caster)
     {
         StaminaDecrease();
+    }
+
+    public void PushEffects(Character caster)
+    {
         foreach (CardEffect e in Effects)
             EventManager.Push(new GameEventPlayEffect(caster, e));
         foreach (CardEffect e in Effects)
             e.OnStack(caster);
+    }
+
+    public void CancelPlay()
+    {
+        CardManager.CardHolder.AddCard(this);
+        while (EventManager.GetActiveEvent() != typeof(GameEventPlayCard))
+            EventManager.Pop();
+        EventManager.Pop();
     }
 
     private void StaminaDecrease()

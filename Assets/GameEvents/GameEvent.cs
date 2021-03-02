@@ -22,7 +22,10 @@ public abstract class GameEvent
 
     public virtual void OnWait() { }
 
+    public virtual void OnStack() { }
     public virtual void Trigger() { }
 
     public virtual bool IsFinished() { return true; }
+    public virtual bool IsCancelable() { return false; }
+    public virtual void Cancel() {  }
 }

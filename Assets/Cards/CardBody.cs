@@ -8,9 +8,10 @@ public class CardBody : MonoBehaviour
     Card card;
 
     private Vector2 TargetPosition = Vector2.zero;
-    private SpriteRenderer renderer;
-    private Collider2D collider;
+    private SpriteRenderer Renderer;
+    private Collider2D Collider;
     private bool Animating = false; //Perfoming an animation
+    private bool Locked; //Locking position
 
 
     [SerializeField]
@@ -38,8 +39,8 @@ public class CardBody : MonoBehaviour
 
     private void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
-        collider = GetComponent<Collider2D>();
+        Renderer = GetComponent<SpriteRenderer>();
+        Collider = GetComponent<Collider2D>();
         canvas = GetComponentInChildren<Canvas>();
     }
     void Update()
@@ -60,25 +61,30 @@ public class CardBody : MonoBehaviour
 
     public void SetPosition(Vector2 position)
     {
+        if (Locked)
+            return;
         TargetPosition = position;
     }
 
     public void SetPriority(int priority)
     {
-        if (renderer == null)
+        if (Renderer == null)
             return;
 
-        renderer.sortingOrder = priority * 2; //Card sorting layer is even so canvas can be between cards
+        Renderer.sortingOrder = priority * 2; //Card sorting layer is even so canvas can be between cards
         canvas.sortingOrder = priority * 2 + 1;
     }
 
     public bool IsHovered()
     {
+        if (Collider == null)
+            return false; //In some cases the function is called before start
+
         Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (collider.OverlapPoint(MousePos))
+        if (Collider.OverlapPoint(MousePos))
             return true;
 
-        Vector2 closest = collider.ClosestPoint(MousePos);
+        Vector2 closest = Collider.ClosestPoint(MousePos);
         if (Mathf.Abs(closest.x - MousePos.x) < 0.1f && closest.y >= MousePos.y)
             return true; //Mouse is under the card
 
@@ -113,7 +119,7 @@ public class CardBody : MonoBehaviour
     {
         Animating = true;
         GetComponentInChildren<Canvas>().sortingLayerName = "Default";
-        renderer.sortingLayerName = "Default";
+        Renderer.sortingLayerName = "Default";
     }
 
     //ANIMATION ROUTINES
@@ -155,5 +161,10 @@ public class CardBody : MonoBehaviour
         }
 
         card.ResetBody();
+    }
+
+    public void Lock(bool Locked = true)
+    {
+        this.Locked = Locked;
     }
 }

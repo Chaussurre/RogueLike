@@ -25,6 +25,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heal: 5
+  NbTargets: 1
 --- !u!1001 &4032972688227381976
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -31,15 +31,15 @@ public class CombatManager : MonoBehaviour
         EventManager = FindObjectOfType<GameEventManager>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (EventManager.IsEmpty())
         {
-            TeamManager.TryToPlay(Time.fixedDeltaTime);
-            Player.Status.ManaRegen(Time.fixedDeltaTime);
+            TeamManager.TryToPlay(Time.deltaTime);
+            Player.Status.ManaRegen(Time.deltaTime);
         }
         else
-            EventManager.Wait(Time.fixedDeltaTime);
+            EventManager.Wait(Time.deltaTime);
     }
 
     public void CreateMarker(Character character)

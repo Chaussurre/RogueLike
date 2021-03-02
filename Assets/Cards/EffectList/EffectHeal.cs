@@ -6,12 +6,15 @@ public class EffectHeal : CardEffect
 {
     [SerializeField]
     protected int heal;
+    [SerializeField]
+    protected int NbTargets = 1;
     CharacterTargetter Targetter;
 
+    GameEventManager EventManager;
     public override void OnStack(Character caster)
     {
-        GameEventManager EventManager = CombatManager.Instance.EventManager;
-        Targetter = new CharacterTargetter(caster, caster.Team);
+        EventManager = CombatManager.Instance.EventManager;
+        Targetter = new CharacterTargetter(caster, caster.Team, NbTargets);
         Targetter.SetPredicate(IsHurt); //Can't heal a full life character
 
         EventManager.Push(Targetter);
@@ -24,7 +27,7 @@ public class EffectHeal : CardEffect
 
     public override void Play(Character caster)
     {
-        CombatManager.Instance.EventManager.Push(new GameEventHeal(caster, Targetter.TargetList, heal));
+        EventManager.Push(new GameEventHeal(caster, Targetter.TargetList, heal));
     }
 
     private bool IsHurt(Character character)

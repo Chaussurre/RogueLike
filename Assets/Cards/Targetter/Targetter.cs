@@ -6,11 +6,15 @@ using UnityEngine;
 public abstract class Targetter<TargetType> : GameEvent
 {
     private Predicate<TargetType> Predicate = null;
-    private bool FoundTarget = false;
+    protected readonly int NbTargets;
 
     public readonly List<TargetType> TargetList = new List<TargetType>();
-    public bool Cancelled { get; protected set; } = false;
-    public Targetter(Character Source) : base(Source, new List<Targetable>() { }) { }
+    public bool Finished { get; protected set; } = false;
+    
+    public Targetter(Character Source, int NbTargets = 1) : base(Source, new List<Targetable>() { }) 
+    {
+        this.NbTargets = NbTargets;
+    }
 
     protected bool Check(TargetType target)
     {
@@ -24,35 +28,30 @@ public abstract class Targetter<TargetType> : GameEvent
 
     public override bool IsFinished()
     {
-        return FoundTarget || Cancelled;
+        return TargetList.Count == NbTargets || Finished;
     }
 
     public override void OnWait()
     {
-        Debug.DrawLine(Vector3.zero, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        if (TryTarget(TargetList))
-        {
-            if (Targets.Count == 0)
-                Cancelled = true;
-            else
-                FoundTarget = true;
-        }
+        Debug.DrawLine(Vector3.zero, Camera.main.ScreenToWorldPoint(Input.mousePosition), Color.green);
+        Finished = TryTarget(TargetList);
     }
 
     private bool TryTarget(List<TargetType> Targets)
     {
-        if (Source != CombatManager.Instance.Player)
+        if (Source != CombatManager.Instance.Player) //Not the player
         {
             AutoTarget(Targets);
             return true;
         }
-        else if (Input.GetMouseButtonDown(0))
+        else if (Input.GetMouseButtonDown(0)) //The player is clicking
         {
             Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.DrawLine(Vector2.zero, MousePos, Color.red);
+            Debug.DrawLine(Vector2.zero, MousePos, Color.red, Time.deltaTime);
             return TargetAtPosition(MousePos, Targets);
         }
-
+        else if (Input.GetMouseButtonDown(1))
+            CombatManager.Instance.EventManager.Cancel();
         return false;
     }
 

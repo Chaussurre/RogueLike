@@ -42,6 +42,7 @@ public class CardHolder : MonoBehaviour
 
     public void RemoveCard(Card card)
     {
+        card.transform.parent = transform.parent;
         Cards.Remove(card);
     }
 

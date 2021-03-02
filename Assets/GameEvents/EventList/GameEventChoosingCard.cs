@@ -10,10 +10,24 @@ public class GameEventChoosingCard : GameEvent
         this.Card = Card;
     }
 
+    public override void OnStack()
+    {
+        CombatManager.Instance.EventManager.Push(new GameEventPlayCard(Source, Card));
+        Card.body.SetPosition(Vector2.zero);
+        Card.body.Lock();
+        CombatManager.Instance.EventManager.Push(new GameEventWait(0.5f));
+    }
+
     public override void Trigger()
     {
         Source.Status.PayMana(Card.ManaCost);
         CombatManager.Instance.CardManager.CardHolder.RemoveCard(Card);
-        CombatManager.Instance.EventManager.Push(new GameEventPlayCard(Source, Card));
+    }
+
+    public override bool IsCancelable() { return true; }
+
+    public override void Cancel()
+    {
+        Card.body.Lock(false);
     }
 }

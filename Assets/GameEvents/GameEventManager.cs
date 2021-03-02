@@ -18,6 +18,7 @@ public class GameEventManager : MonoBehaviour
     public void Push(GameEvent gameEvent)
     {
         Events.Push(gameEvent);
+        gameEvent.OnStack();
     }
 
     public void Wait(float Timer)
@@ -52,6 +53,17 @@ public class GameEventManager : MonoBehaviour
             Pop();
     }
 
+    public void Cancel()
+    {
+        GameEvent e = Events.Pop();
+        while (!e.IsCancelable())
+        {
+            e = Events.Pop();
+            e.Cancel(); // Pop until first cancelable
+        }
+    }
+
+
     public System.Type GetActiveEvent()
     {
         if (IsEmpty())
@@ -68,5 +80,14 @@ public class GameEventManager : MonoBehaviour
     public void RemoveWatcher(GameEventWatcher watcher)
     {
         Watchers.Remove(watcher);
+    }
+
+    public static bool IsTargetter(GameEvent gameEvent)
+    {
+        if (gameEvent.GetType().IsSubclassOf(typeof(Targetter<Character>)))
+            return true;
+        if (gameEvent.GetType().IsSubclassOf(typeof(Targetter<Card>)))
+            return true;
+        return false;
     }
 }

@@ -10,13 +10,14 @@ public class GameEventPlayCard : GameEvent
         this.Card = Card;
     }
 
+    public override void OnStack()
+    {
+        Card.PushEffects(Source);
+    }
+
     public override void Trigger()
     {
+        Debug.Log("Trigger");
         Card.Play(Source);
-        if (Card.body != null)
-        {
-            Card.body.SetPosition(Vector2.zero);
-            CombatManager.Instance.EventManager.Push(new GameEventWait(0.5f));
-        }
     }
 }
