@@ -20,6 +20,8 @@ public class CardHolderPositionner : MonoBehaviour
 
     [HideInInspector]
     public Card CardGrabbed = null;
+    [HideInInspector]
+    public Card CardHovered = null;
 
     CardHolder holder;
     List<Card> Cards;
@@ -34,9 +36,15 @@ public class CardHolderPositionner : MonoBehaviour
     {
         int CardIndex = FindHoveredCard();
         if (CardIndex >= 0)
+        {
+            CardHovered = Cards[CardIndex];
             GroupHoveredCard(CardIndex);
+        }
         else
+        {
+            CardHovered = null;
             NoCardHoveredGroup();
+        }
 
         TryPlayCard();
         TryGrabCard(CardIndex);
@@ -113,10 +121,15 @@ public class CardHolderPositionner : MonoBehaviour
         GroupCards(StartPos, StartCardSpace, GetRange(0, cardIndex));
         GroupCards(EndCardSpace, EndPos, GetRange(cardIndex + 1, Cards.Count - cardIndex - 1), true);
 
-        if (Cards[cardIndex] != CardGrabbed) //Hovered card isn't grabbed so it doesn't follow mouse
-            Cards[cardIndex].body.SetPosition(CardPosition + Vector2.up * HoveredCardUp);
-        else // Hovered is grabbed so it follow mouse
-            Cards[cardIndex].body.SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (CombatManager.Instance.EventManager.GetActiveEvent() == typeof(GameEventPlayerTurn))
+        {
+            if (Cards[cardIndex] != CardGrabbed) //Hovered card isn't grabbed so it doesn't follow mouse
+                Cards[cardIndex].body.SetPosition(CardPosition + Vector2.up * HoveredCardUp);
+            else // Hovered is grabbed so it follow mouse
+                Cards[cardIndex].body.SetPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+        else
+            Cards[cardIndex].body.SetPosition(CardPosition);
 
         Cards[cardIndex].body.SetPriority(Cards.Count); //Highest priority for the hovered/grabbed card
     }

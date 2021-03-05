@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectDamage : CardEffect
+public class EffectDamage : EffectCharacterTarget
 {
     [SerializeField]
     int damage;
-    public override void Play(Character caster)
+    protected override void TargetAction(Character caster, Character target)
     {
-        Character Target = CombatManager.Instance.BadGuy;
-        CombatManager.Instance.EventManager.Push(new GameEventDealDamage(caster, new List<Character>() { Target }, damage));
+        EventManager.Push(new GameEventDealDamage(caster, new List<Character>() { target }, damage));
     }
 }

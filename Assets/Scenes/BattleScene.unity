@@ -831,6 +831,7 @@ MonoBehaviour:
   ListCards:
   - {fileID: 412784369542834314, guid: b67e306ad43d3e747b6012208ed2547f, type: 3}
   - {fileID: 6900649025498003154, guid: f7f88007b2eefd34083083d781830177, type: 3}
+  - {fileID: -126632123947190844, guid: 7d43afd6176cafa41a80be5e8f7b5cc3, type: 3}
 --- !u!114 &752049350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1592,6 +1593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHand: 4
+  Positionner: {fileID: 0}
 --- !u!4 &1473432687
 Transform:
   m_ObjectHideFlags: 0
@@ -1623,6 +1625,8 @@ MonoBehaviour:
   HoveredCardUp: 3
   CardPlayHeight: 3.5
   WaitingLowering: 0.5
+  CardGrabbed: {fileID: 0}
+  CardHovered: {fileID: 0}
 --- !u!1 &1527196768
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,9 +5,9 @@ using UnityEngine;
 public class TeamManager : MonoBehaviour
 {
     [SerializeField]
-    Team LeftTeam;
+    public Team LeftTeam;
     [SerializeField]
-    Team RightTeam;
+    public Team RightTeam;
 
     public Lane LanePrefab;
     

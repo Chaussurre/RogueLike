@@ -28,6 +28,7 @@ public class GameEventManager : MonoBehaviour
     {
         if (IsTargetter(this))
             TargetterManager.StopTargetting();
+
         Events.Push(gameEvent);
         gameEvent.OnStack();
 

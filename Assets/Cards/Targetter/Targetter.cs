@@ -5,12 +5,11 @@ using UnityEngine;
 
 public abstract class Targetter<TargetType> : GameEvent
 {
-    private Predicate<TargetType> Predicate = null;
     protected readonly int NbTargets;
 
     protected readonly HashSet<TargetType> Candidates = new HashSet<TargetType>();
 
-    public readonly List<TargetType> TargetList = new List<TargetType>();
+    public readonly List<TargetType> TargetsCharacter = new List<TargetType>();
 
     GameEventManager EventManager;
     public Targetter(Character Source, int NbTargets = 1) : base(Source, new List<Targetable>() { }) 
@@ -19,26 +18,21 @@ public abstract class Targetter<TargetType> : GameEvent
         EventManager = CombatManager.Instance.EventManager;
     }
 
-    protected bool Check(TargetType target)
+    public void RemoveWhere(Predicate<TargetType> Predicate)
     {
-        return Predicate == null || Predicate(target);
-    }
-
-    public void SetPredicate(Predicate<TargetType> Predicate)
-    {
-        this.Predicate = Predicate;
+        Candidates.RemoveWhere(Predicate);
     }
 
     public override bool IsFinished()
     {
-        return TargetList.Count >= NbTargets || TargetList.Count >= Candidates.Count;
+        return TargetsCharacter.Count >= NbTargets || TargetsCharacter.Count >= Candidates.Count;
     }
 
     public override void OnWait()
     {
         Debug.DrawLine(Vector3.zero, Camera.main.ScreenToWorldPoint(Input.mousePosition), Color.green);
 
-        TryTarget(TargetList);
+        TryTarget(TargetsCharacter);
     }
 
     private void TryTarget(List<TargetType> Targets)

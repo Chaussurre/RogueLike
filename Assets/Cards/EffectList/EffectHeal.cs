@@ -2,36 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectHeal : CardEffect
+public class EffectHeal : EffectCharacterTarget
 {
     [SerializeField]
-    protected int heal;
-    [SerializeField]
-    protected int NbTargets = 1;
-    CharacterTargetter Targetter;
+    int Heal;
 
-    GameEventManager EventManager;
-    public override void OnStack(Character caster)
+    protected override void TargetAction(Character caster, Character target)
     {
-        EventManager = CombatManager.Instance.EventManager;
-        Targetter = new CharacterTargetter(caster, caster.Team, NbTargets);
-        Targetter.SetPredicate(IsHurt); //Can't heal a full life character
-
-        EventManager.Push(Targetter);
-    }
-
-    public override bool CanPlay()
-    {
-        return true;//!Targetter.Cancelled;
-    }
-
-    public override void Play(Character caster)
-    {
-        EventManager.Push(new GameEventHeal(caster, Targetter.TargetList, heal));
-    }
-
-    private bool IsHurt(Character character)
-    {
-        return character.Status.Hp < character.Status.characteristics.Hp;
+        EventManager.Push(new GameEventHeal(caster, new List<Character>() { target }, Heal));
     }
 }
