@@ -629,6 +629,10 @@ PrefabInstance:
       propertyPath: Layer
       value: Allies
       objectReference: {fileID: 0}
+    - target: {fileID: 3348334674867383735, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
+      propertyPath: Projection
+      value: 
+      objectReference: {fileID: 1432384562}
     - target: {fileID: 4524705087610195400, guid: be5701a79e1d0464f8f14bbd1a3f631b, type: 3}
       propertyPath: m_Name
       value: BattleField Left
@@ -765,6 +769,7 @@ GameObject:
   - component: {fileID: 752049350}
   - component: {fileID: 752049349}
   - component: {fileID: 752049351}
+  - component: {fileID: 752049352}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -853,6 +858,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9723056fe4322344c99e41953d9ec637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetterManager: {fileID: 0}
+--- !u!114 &752049352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752049346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b6f52cf29ef394187709346818fb2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowPrefab: {fileID: 6671376573754276118, guid: d4c1b1b5e63f9b4428a273b071ff7458, type: 3}
 --- !u!1 &771508443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,6 +1970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 634491046656496066, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 805198159709415007, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_Color.g
       value: 0.0039215684
@@ -1983,12 +2006,32 @@ PrefabInstance:
       propertyPath: Attack
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4180459573146503259, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5216077360541420169, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5216077360541420169, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5933043975058372091, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954274433341537817, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7199405556247590686, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784117333961658707, guid: 0e604ff7e90a4f84f9e56b2ae8913f37, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

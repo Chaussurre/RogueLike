@@ -63,5 +63,10 @@ public class Character : MonoBehaviour, Targetable
         Character Target = Targets[Random.Range(0, Targets.Count)];
         CombatManager.Instance.EventManager.Push(new GameEventStrike(this, Target));
     }
+
+    public Vector2 GetScreenPosition()
+    {
+        return body.GetScreenPosition();
+    }
 }
 

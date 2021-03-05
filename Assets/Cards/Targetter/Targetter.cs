@@ -11,9 +11,12 @@ public abstract class Targetter<TargetType> : GameEvent
     protected readonly HashSet<TargetType> Candidates = new HashSet<TargetType>();
 
     public readonly List<TargetType> TargetList = new List<TargetType>();
+
+    GameEventManager EventManager;
     public Targetter(Character Source, int NbTargets = 1) : base(Source, new List<Targetable>() { }) 
     {
         this.NbTargets = NbTargets;
+        EventManager = CombatManager.Instance.EventManager;
     }
 
     protected bool Check(TargetType target)
@@ -35,27 +38,21 @@ public abstract class Targetter<TargetType> : GameEvent
     {
         Debug.DrawLine(Vector3.zero, Camera.main.ScreenToWorldPoint(Input.mousePosition), Color.green);
 
-        if (TryTarget(TargetList))
-            ;//TODO : Create Arrow
+        TryTarget(TargetList);
     }
 
-    private bool TryTarget(List<TargetType> Targets)
+    private void TryTarget(List<TargetType> Targets)
     {
-        if(Candidates.Count <= NbTargets //Not enought candidates
-            || Source != CombatManager.Instance.Player) //Not the player
-        {
+        if (Source != CombatManager.Instance.Player) //Not the player
             AutoTarget(Targets);
-            return true;
-        }
         else if (Input.GetMouseButtonUp(0)) //The player is clicking
         {
             Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.DrawLine(Vector2.zero, MousePos, Color.red, Time.deltaTime);
-            return TargetAtPosition(MousePos, Targets);
+            if (TargetAtPosition(MousePos, Targets))
+                EventManager.TargetterManager.CreateArrow((Targetable) Targets[Targets.Count -1]);
         }
         else if (Input.GetMouseButtonDown(1))
-            CombatManager.Instance.EventManager.Cancel();
-        return false;
+            EventManager.Cancel();
     }
 
     protected abstract bool TargetAtPosition(Vector2 mousePosisition, List<TargetType> targets);

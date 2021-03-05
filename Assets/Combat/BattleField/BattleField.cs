@@ -5,10 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof (LaneManager))]
 public class BattleField : MonoBehaviour
 {
+    public GameObject Projection;
     public List<Lane> Lanes { get; private set; } = new List<Lane>();
     public Lane FrontLine { get; private set; }
-    [SerializeField]
-    public string Layer;
     
     public void AddCharacter(Character character)
     {

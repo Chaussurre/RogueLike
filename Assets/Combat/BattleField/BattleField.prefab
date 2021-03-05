@@ -63,7 +63,7 @@ Camera:
   m_Depth: 100
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: e662703b1e3b87643ac925ae1fb0deaf, type: 2}
   m_TargetDisplay: 0
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1244f090906bd4db1997a02bb8f3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Projection: {fileID: 4680074660552134668}
   Layer: 
 --- !u!114 &7274002076748386683
 MonoBehaviour:

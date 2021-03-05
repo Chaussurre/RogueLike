@@ -7,6 +7,9 @@ public class CardHolder : MonoBehaviour
     [SerializeField]
     int StartingHand = 4;
 
+    [HideInInspector]
+    public CardHolderPositionner Positionner;
+
     public List<Card> Cards { get; private set; } = new List<Card>();
 
     private Deck Deck;
@@ -14,6 +17,7 @@ public class CardHolder : MonoBehaviour
 
     void Start()
     {
+        Positionner = GetComponent<CardHolderPositionner>();
         Player = CombatManager.Instance.Player;
         Deck = CombatManager.Instance.CardManager.Deck;
         Draw(StartingHand);

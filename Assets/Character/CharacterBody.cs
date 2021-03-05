@@ -8,6 +8,12 @@ public class CharacterBody : MonoBehaviour
     Character Character;
     public TimelineMarker marker { get; private set; }
 
+    public Vector2 GetScreenPosition()
+    {
+        Vector3 delta = Character.Team.BattleField.Projection.transform.position - Character.Team.Camera.transform.position;
+        Collider2D collider = Character.Team.BattleField.GetComponent<Collider2D>();
+        return collider.ClosestPoint(transform.position + delta);
+    }
     private void Start()
     {
         Character = GetComponentInParent<Character>();

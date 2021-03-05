@@ -2,10 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TargetterManager))]
 public class GameEventManager : MonoBehaviour
 {
+    [HideInInspector]
+    public TargetterManager TargetterManager;
+
     public readonly Stack<GameEvent> Events = new Stack<GameEvent>();
     public readonly HashSet<GameEventWatcher> Watchers = new HashSet<GameEventWatcher>();
+
+    private void Start()
+    {
+        TargetterManager = GetComponent<TargetterManager>();
+    }
 
     public bool IsEmpty()
     {
@@ -17,18 +26,24 @@ public class GameEventManager : MonoBehaviour
 
     public void Push(GameEvent gameEvent)
     {
+        if (IsTargetter(this))
+            TargetterManager.StopTargetting();
         Events.Push(gameEvent);
         gameEvent.OnStack();
+
+        if (IsTargetter(gameEvent))
+            TargetterManager.CreateArrow(null);
     }
 
     public void Wait(float Timer)
     {
         Events.Peek().Wait(Timer);
+
     }
 
     private void PlayEvent()
     {
-        GameEvent gameEvent = Events.Pop();
+        GameEvent gameEvent = Pop();
 
         foreach (GameEventWatcher watcher in Watchers)
             if (watcher.Check(gameEvent) && !watcher.IsAllowed(gameEvent))
@@ -41,10 +56,17 @@ public class GameEventManager : MonoBehaviour
                 watcher.OnTrigger(gameEvent);
     }
 
-    public void Pop()
+    public GameEvent Pop()
     {
-        if (Events.Count > 0)
-            Events.Pop();
+        if (IsTargetter(this))
+            TargetterManager.StopTargetting();
+
+        GameEvent gameEvent = Events.Pop();
+
+        if (IsTargetter(this))
+            TargetterManager.CreateArrow(null);
+
+        return gameEvent;
     }
 
     public void Pop(System.Type type)
@@ -55,10 +77,10 @@ public class GameEventManager : MonoBehaviour
 
     public void Cancel()
     {
-        GameEvent e = Events.Pop();
+        GameEvent e = Pop();
         while (!e.IsCancelable())
         {
-            e = Events.Pop();
+            e = Pop();
             e.Cancel(); // Pop until first cancelable
         }
     }
@@ -89,5 +111,13 @@ public class GameEventManager : MonoBehaviour
         if (gameEvent.GetType().IsSubclassOf(typeof(Targetter<Card>)))
             return true;
         return false;
+    }
+
+    public static bool IsTargetter(GameEventManager manager)
+    {
+        if (manager.Events.Count == 0)
+            return false;
+        return IsTargetter(manager.Events.Peek());
+
     }
 }

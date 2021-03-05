@@ -87,4 +87,11 @@ public class Card : MonoBehaviour, Targetable
         Destroy(body.gameObject);
         body = null;
     }
+
+    public Vector2 GetScreenPosition()
+    {
+        if (body != null)
+            return body.transform.position;
+        return Vector2.zero;
+    }
 }

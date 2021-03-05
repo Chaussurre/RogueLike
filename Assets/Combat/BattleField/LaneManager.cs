@@ -26,7 +26,7 @@ public class LaneManager : MonoBehaviour
     private void Update()
     {
         SetLanePositions();
-        if (Grabbed)
+        if (Grabbed && CombatManager.Instance.CardManager.CardHolder.Positionner.CardGrabbed == null)
         {
             Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Camera.transform.position -= Vector3.right * (MousePos.x - GrabbedPosition);
