@@ -38,22 +38,33 @@ public class Arrow : MonoBehaviour
 
         Head.transform.position = End;
 
-        List<Vector2> points = GetPointsCurve(Start, End);
+        float deltaX = Mathf.Atan(Start.x - End.x);
+        float deltaY = Mathf.Atan(Start.y - End.y);
+        Vector2 MiddlePoint = End + Vector2.up * deltaY * CurveSize + Vector2.right * deltaX;
+        Debug.DrawLine(Start, MiddlePoint, Color.yellow);
+        Debug.DrawLine(End, MiddlePoint, Color.yellow);
+        List<Vector2> Corners = new List<Vector2>() { Start, MiddlePoint, End };
+
+        AngleHead(End - MiddlePoint);
+
+        List<Vector2> points = GetPointsCurve(Corners);
         UpdateListBody(points.Count);
 
         for (int i = 0; i < points.Count; i++)
             ListBody[i].transform.position = points[i];
     }
 
-    List<Vector2> GetPointsCurve(Vector2 Start, Vector2 End)
+    private void AngleHead(Vector2 delta)
     {
-        if (Start == End)
-            return new List<Vector2>();
+        float Angle = Vector2.SignedAngle(Vector2.up, delta);
+        Head.transform.rotation = Quaternion.Euler(0, 0, Angle);
+    }
 
-        List<Vector2> Corners = new List<Vector2>() { Start, End + Vector2.down * CurveSize, End };
+    List<Vector2> GetPointsCurve(List<Vector2> Corners)
+    {
         List<Vector2> points = new List<Vector2>();
         float step = DistanceStep;
-        for(float distance = 0f; distance < 1f; distance += step)
+        for(float distance = 0f; distance < 1f - step; distance += step)
             points.Add(PointOnCurve(Corners, distance));
 
         return points;

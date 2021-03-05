@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceStep: 0.1
+  DistanceFinalStep: 10
   CurveSize: 2
   HeadPrefab: {fileID: 2173932923748065712, guid: 834e4603faba8d04fb7d69a8e98bf642, type: 3}
   BodyPrefab: {fileID: 6340891565662882521, guid: fe831aefa5e593e499affd86638a7553, type: 3}

@@ -18,6 +18,7 @@ public class CardHolderPositionner : MonoBehaviour
     [SerializeField]
     float WaitingLowering; //How lower the card are when you can't play them
 
+    [HideInInspector]
     public Card CardGrabbed = null;
 
     CardHolder holder;

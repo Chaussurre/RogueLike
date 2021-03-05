@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameEventChoosingCard : GameEvent
 {
-    Card Card;
+    public Card Card { get; private set; }
     public GameEventChoosingCard(Card Card) : base(CombatManager.Instance.Player, new List<Targetable>() { Card })
     {
         this.Card = Card;

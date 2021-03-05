@@ -48,7 +48,7 @@ public class GameEventManager : MonoBehaviour
         foreach (GameEventWatcher watcher in Watchers)
             if (watcher.Check(gameEvent) && !watcher.IsAllowed(gameEvent))
                 return;
-        
+
         gameEvent.Trigger();
 
         foreach (GameEventWatcher watcher in Watchers)
